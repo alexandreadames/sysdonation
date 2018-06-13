@@ -1,0 +1,24 @@
+{
+    "name": "alexandreadames/sysdonation",
+    "description": "Projeto de um sistema de doa\u0000\u0000es",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Alexandre",
+            "email": "alexandre.adames@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+        "mercadopago/sdk": "0.5.2",
+        "slim/slim": "^3.8"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "src"
+        }
+    }
+
+}
