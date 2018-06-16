@@ -12,7 +12,11 @@
     "require": {
 
         "mercadopago/sdk": "0.5.2",
-        "slim/slim": "^3.8"
+        "slim/slim": "^3.8",
+        "firebase/php-jwt":"5.*",
+        "tuupola/slim-jwt-auth": "3.x-dev",
+        "hannesvdvreken/psr7-middlewares": "dev-master"
+
     },
 
     "autoload": {

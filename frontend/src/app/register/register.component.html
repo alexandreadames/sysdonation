@@ -1,0 +1,91 @@
+<div class="wrapper hold-transition register-page">
+<div class="register-box">
+  <div class="register-logo">
+    <a href="../../index2.html"><b>Sys</b>Donation</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Faça seu cadastro</p>
+  
+    <form #registerForm="ngForm"(ngSubmit)="register(registerForm)" novalidate> 
+      
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Nome Completo" name="name" ngModel>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email" name="email" ngModel>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Telefone" name="phone" ngModel>
+        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Endereço" name="address" ngModel>
+        <span class="glyphicon glyphicon-home form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Site (opcional)" name="site" ngModel>
+        <span class="glyphicon glyphicon-globe form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="CPF" name="cpf" ngModel>
+        <span class="glyphicon glyphicon-info-sign form-control-feedback"></span>
+      </div>
+
+      <hr>
+
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" placeholder="Login" name="login" ngModel>
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Senha" name="password" ngModel>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Confirme a senha" name="retyped_password" ngModel>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label>
+              <input type="checkbox"> Eu aceito os <a href="#">Termos de uso</a>
+            </label>
+          </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastre-se</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <!--
+    <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+        Facebook</a>
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+        Google+</a>
+    </div>
+    -->
+
+    <a routerLink="/signin" routerLinkActive="active">Eu já tenho cadastro</a>
+  </div>
+  <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
+</div>
+
