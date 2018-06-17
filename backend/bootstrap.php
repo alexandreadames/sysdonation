@@ -1,14 +1,17 @@
 <?php
 
-require './vendor/autoload.php';
-
-use Firebase\JWT\JWT;
-//use Psr7Middlewares\Middleware\TrailingSlash;
-
-
 /**
- * Configurações
+ * Entities
  */
+use \App\Models\Utils\Globals;
+
+
+/*
+*=============================================================================================
+* BEGIN - CONFIGS
+*=============================================================================================
+*/
+
 $configs = [
     'settings' => [
         'displayErrorDetails' => true,
@@ -26,35 +29,38 @@ $container = new \Slim\Container($configs);
 /**
  * Token do nosso JWT
  */
-$container['secretkey'] = "secret@sysdonation";
+$container['secretkey'] = Globals::SECRET_KEY;
 
-/**
+/*
+*=============================================================================================
+* END -CONFIGS
+*=============================================================================================
+*/
+
+ /**
  * Application Instance
  */
 $app = new \Slim\App($container);
-
-
-/**
- * @Middleware Tratamento da / do Request 
- * true - Adiciona a / no final da URL
- * false - Remove a / no final da URL
- */
-//$app->add(new TrailingSlash(false));
 
 /**
  * Auth básica do JWT
  * Whitelist - Bloqueia tudo, e só libera os
  * itens dentro do "passthrough"
  */
-/*$app->add(new Tuupola\Middleware\JwtAuthentication([
+$app->add(new Tuupola\Middleware\JwtAuthentication([
     "regexp" => "/(.*)/",
     "header" => "X-Token",
-    "path" => "/",
-    "passthrough" => ["/login", "/register"],
+    "path" => "/secure",
     "realm" => "Protected",
-    "secret" => $container['secretkey']
-]));*/
+    "secret" => $container['secretkey'],
+    "error" => function ($response, $arguments) {
+        $data["status"] = "error";
+        $data["message"] = "Ocorreu um erro de autenticação";
+        return $response
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    }
+]));
+
 
 ?>
-
-
