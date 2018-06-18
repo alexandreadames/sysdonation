@@ -3,27 +3,48 @@
 /**
  * AutoLoad do Composer
  */
-require_once("vendor/autoload.php");
+require_once("../vendor/autoload.php");
 
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\ExpiredException;
+use \Firebase\JWT\SignatureInvalidException;
+
 
 const SECRET_KEY = "secret@sysdonation";
 
+$date = new DateTime();
+$date->modify("+2 minutes");
+
 $token = array(
-	"login" => "alexandreadames",
-	"email" => "alexandre.adames@gmail.com",
-	"id"=> 1234
+	"userId"=> 6,
+	"exp"=> $date->getTimestamp()
 );
 
 //$jwt = JWT::encode($token, SECRET_KEY);
 
 //echo $jwt;
+try{
 
-$jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpbiI6ImFsZXhhbmRyZWFkYW1lcyIsImR0cmVnaXN0ZXIiOiIyMDE4LTA2LTE1IDE0OjM3OjMwIiwibmFtZSI6IkFsZXhhbmRyZSBcdTAwYzFkYW1lcyBBbHZlcyBQb250ZXMiLCJlbWFpbCI6ImFsZXhhbmRyZS5hZGFtZXNAZ21haWwuY29tIiwicGhvbmUiOiIoODQpIDk4ODI4LTUxMTYiLCJzaXRlIjoiaHR0cDpcL1wvd3d3Lmx1bHV6aW5oYWJhYnlraWRzLmNvbSIsImFkZHJlc3MiOiJBdi4gQnJpZ2FkZWlybyBTYWxlbWEiLCJjcGYiOiIwNDk4Mzg2MzQxOSJ9.vAWp4m3yLPYHgbohyuyA6XkE14uheZ7MlGNpurXtfAw";
+	$jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjYsImV4cCI6MTUyOTI4MTUxMX0.JpTIqNXGmRTCFMr1b_wtkguTeeqCRjx02TQBUfh9EaQ";
 
-$decoded = JWT::decode($jwt, SECRET_KEY, array('HS256'));
+	$decoded = JWT::decode($jwt, SECRET_KEY, array('HS256'));
 
-print_r($decoded);
+	var_dump($decoded);
+
+}
+catch (ExpiredException $ee) {
+
+	echo "O Token expirou, refaça seu login";
+
+}
+catch (SignatureInvalidException $sie) {
+
+	echo "Não foi possível verificar a integridade do token, be carefull";
+
+}
+
+
+
 
 /*$arraytest = array(
 	"id" => 1,

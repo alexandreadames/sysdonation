@@ -6,6 +6,8 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\ExpiredException;
+use \Firebase\JWT\SignatureInvalidException;
 
 /**
  * Entities
@@ -19,25 +21,26 @@ use \App\Models\Utils\Globals;
  * Pega os dados do usuário após logar
  */
 $app->get('/secure/user', function (Request $request, Response $response) use ($app) {
+
+ 
+
+        //$route = $request->getAttribute('route');
+        //$id = $route->getArgument('id');    
     
-    //$route = $request->getAttribute('route');
-    //$id = $route->getArgument('id');    
-    
-    $token = $request->getHeader('X-Token');
+        $token = $request->getHeader('X-Token');
 
-    //Decrypt token
-    $decoded = JWT::decode($token[0], Globals::SECRET_KEY, array('HS256'));
-    
-    //$user = json_decode($decoded, true);
+        //Decrypt token
+        $decoded = JWT::decode($token[0], Globals::SECRET_KEY, array('HS256'));
 
-    //$userDAO = new UserDAO();
+        $userDAO = new UserDAO();
 
-    //$result = $userDAO->getUserById($user["id"]);
+        $result = $userDAO->getUserById( (int) $decoded->userId);
 
-    $return = $response->withJson($decoded, 200)
-        ->withHeader('Content-type', 'application/json');
+        $return = $response->withJson($result, 200)
+            ->withHeader('Content-type', 'application/json');
 
-    return $return;
+        return $return;
+
 });
 
 /**

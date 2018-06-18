@@ -55,7 +55,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => $container['secretkey'],
     "error" => function ($response, $arguments) {
         $data["status"] = "error";
-        $data["message"] = "Ocorreu um erro de autenticação";
+        $data["message"] = $arguments;
         return $response
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));

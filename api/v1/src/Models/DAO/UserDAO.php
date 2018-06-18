@@ -36,14 +36,16 @@ class UserDAO {
 			$response["error"] = false;
 			$response["msg"] = "Login efetuado";
 
-			//Retirar dados que não precisam ir para o front
-			unset(
-				$data["id"], 
-				$data["password"], 
-				$data["tbl_persons_id"] 
+			//O Token expira em 1 hora
+			$date = new \DateTime();
+			$date->modify("+1 minute");
+
+			$payload = array(
+				"userId" => $data["id"],
+				"exp"=> $date->getTimestamp()
 			);
 
-			$jwt = JWT::encode($data, Globals::SECRET_KEY);
+			$jwt = JWT::encode($payload, Globals::SECRET_KEY);
 			
 			$response["data"]["token"]= $jwt;
 			
@@ -103,9 +105,24 @@ public function getUserById($iduser){
 
 		$sql = new SQLUtils();
 
-		$results = $sql->select("SELECT * FROM tbl_users u INNER JOIN tbl_persons p ON u.tbl_persons_id = p.id WHERE u.id = :iduser;", array(
-			":iduser"=>$iduser
-		));
+		$results = $sql->select("
+			SELECT 
+			    u.login,
+			    u.dtregister,
+			    p.name,
+			    p.email,
+			    p.phone,
+			    p.site,
+			    p.address,
+			    p.cpf
+			FROM
+			    tbl_users u
+			        INNER JOIN
+			    tbl_persons p ON u.tbl_persons_id = p.id
+			WHERE u.id = :iduser;", 
+			array(
+				":iduser"=>$iduser
+			));
 
 		return $results[0];
 
