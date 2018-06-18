@@ -16,24 +16,22 @@ use \App\Models\DAO\UserDAO;
 use \App\Models\Utils\Globals;
 
 
+use \App\Models\Utils\TokenUtils;
+
+
 /**
  * Pega os dados do usuário após logar
  */
 $app->get('/secure/user', function (Request $request, Response $response) use ($app) {
 
- 
-
         //$route = $request->getAttribute('route');
-        //$id = $route->getArgument('id');    
-    
-        $token = $request->getHeader('X-Token');
+        //$id = $route->getArgument('id'); 
 
-        //Decrypt token
-        $decoded = JWT::decode($token[0], Globals::SECRET_KEY, array('HS256'));
+        $decoded_token = TokenUtils::decodeToken($request);   
 
         $userDAO = new UserDAO();
 
-        $result = $userDAO->getUserById( (int) $decoded->userId);
+        $result = $userDAO->getUserById( (int) $decoded_token["userId"]);
 
         $return = $response->withJson($result, 200)
             ->withHeader('Content-type', 'application/json');

@@ -48,8 +48,8 @@ $app = new \Slim\App($container);
  * itens dentro do "passthrough"
  */
 $app->add(new Tuupola\Middleware\JwtAuthentication([
-    "regexp" => "/(.*)/",
-    "header" => "X-Token",
+    //"regexp" => "/(.*)/",
+    //"header" => "X-Token",
     "path" => "/secure",
     "realm" => "Protected",
     "secret" => $container['secretkey'],
