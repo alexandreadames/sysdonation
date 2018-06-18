@@ -8,3 +8,5 @@ Class Globals {
     public const SECRET_KEY = "secret@sysdonation";
 
 }
+
+?>

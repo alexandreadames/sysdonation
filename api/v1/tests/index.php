@@ -23,7 +23,7 @@ $token = array(
 //$jwt = JWT::encode($token, SECRET_KEY);
 
 //echo $jwt;
-try{
+/*try{
 
 	$jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjYsImV4cCI6MTUyOTI4MTUxMX0.JpTIqNXGmRTCFMr1b_wtkguTeeqCRjx02TQBUfh9EaQ";
 
@@ -57,6 +57,26 @@ catch (SignatureInvalidException $sie) {
 unset($arraytest["id"], $arraytest["idpessoa"], $arraytest["password"] );
 
 print_r($arraytest);*/
+//O Token expira em 1 hora
+const TOKEN_EXPIRATION_TIME = "+1 hour";
+
+$date = new \DateTime();
+$date->modify(TOKEN_EXPIRATION_TIME);
+
+
+$custom_payload = array(
+				"userId" => 6
+);
+
+$payload = array_merge(
+	$custom_payload, array(
+		"exp" => $date->getTimestamp()
+	)
+);
+
+var_dump($payload);
+
+
 
 
 

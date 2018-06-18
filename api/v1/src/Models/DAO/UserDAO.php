@@ -6,6 +6,7 @@ use \App\Models\Entity\User;
 use \App\Models\Entity\Response;
 use \Firebase\JWT\JWT;
 use \App\Models\Utils\Globals;
+use \App\Models\Utils\TokenUtils;
 
 
 class UserDAO {
@@ -36,16 +37,11 @@ class UserDAO {
 			$response["error"] = false;
 			$response["msg"] = "Login efetuado";
 
-			//O Token expira em 1 hora
-			$date = new \DateTime();
-			$date->modify("+1 minute");
-
-			$payload = array(
-				"userId" => $data["id"],
-				"exp"=> $date->getTimestamp()
+			$custom_payload = array(
+				"userId" => $data["id"]
 			);
 
-			$jwt = JWT::encode($payload, Globals::SECRET_KEY);
+			$jwt = TokenUtils::generateToken($custom_payload);
 			
 			$response["data"]["token"]= $jwt;
 			

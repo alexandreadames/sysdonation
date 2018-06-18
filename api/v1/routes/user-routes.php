@@ -6,8 +6,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Firebase\JWT\JWT;
-use \Firebase\JWT\ExpiredException;
-use \Firebase\JWT\SignatureInvalidException;
+
 
 /**
  * Entities
