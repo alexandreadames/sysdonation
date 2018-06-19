@@ -11,11 +11,11 @@ export class LoginService {
     ) { }
  
   setUserToken(token) {
-      this.localstorage.set("X-Token", token);
+      this.localstorage.set("userToken", token);
   }
 
   getUserToken(){
-      return this.localstorage.get("X-Token");
+      return this.localstorage.get("userToken");
   }
 
   setUserInfo(user){

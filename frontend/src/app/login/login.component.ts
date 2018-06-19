@@ -1,3 +1,4 @@
+import { AlertService } from './../_services/alert.service';
 import { Httpres } from '../models/httpres';
 import { GlobalService } from '../services/global.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,10 @@ export class LoginComponent implements OnInit {
 
   private loginRoute = GlobalService.baseUrl + "/user/login";
 
-  constructor(private http: HttpClient, private router: Router, private loginService: LoginService) {}
+  constructor(private http: HttpClient, 
+    private router: Router, 
+    private loginService: LoginService,
+    private alertService: AlertService) {}
 
   ngOnInit() {
   }
@@ -40,9 +44,15 @@ export class LoginComponent implements OnInit {
             this.loginService.setUserToken(res.data.token);
             this.router.navigate(["/admin"]);
           }
+          else{
+            console.log(res.msg);
+            this.alertService.error(res.msg);  
+          }
         },
         err => {
-          console.log("Error occured");
+          console.log("ERROR=>",err.statusText);
+          this.alertService.error("ERROR=>" + err.statusText + "Consulte os Logs");
+
         }
       );
     }

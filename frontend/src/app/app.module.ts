@@ -25,6 +25,8 @@ import { AdminDashboard1Component } from './admin/admin-dashboard1/admin-dashboa
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AlertComponent } from './_directives/index';
+import { AlertService } from './_services/index';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { RegisterComponent } from './register/register.component';
     StarterControlSidebarComponent,
     FrontpageComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule,
     StorageServiceModule
   ],
-  providers: [LoginService, GlobalService],
+  providers: [LoginService, GlobalService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

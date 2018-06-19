@@ -47,7 +47,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   loadUserInfo(){
     this.http.get<User>(this.secureUserRoute,{
 
-      headers: new HttpHeaders().set('X-Token', this.loginService.getUserToken())
+      headers: new HttpHeaders().set('Authorization', 'Bearer '+this.loginService.getUserToken())
   
     }).subscribe(res => {
       this.user = res;
