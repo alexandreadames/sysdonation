@@ -47,6 +47,8 @@
     "jqueryui": "^1.11.1",
     "moment": "^2.18.1",
     "morris.js": "^0.5.0",
+    "ng2-slugify": "^0.1.0",
+    "ngx-ckeditor": "^0.3.2",
     "npm": "^5.3.0",
     "raphael": "^2.2.7",
     "rxjs": "^5.5.5",

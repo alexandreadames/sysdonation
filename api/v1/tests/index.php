@@ -77,14 +77,18 @@ $payload = array_merge(
 var_dump($payload);
 */
 
-$token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2IiwiZXhwIjoxNTI5MzQwMDk0fQ.rXgfpTw9zGZTIJEiDHlg7M3g1Kl9F3YCEiy8C22Iq6I";
+/*$token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI2IiwiZXhwIjoxNTI5MzQwMDk0fQ.rXgfpTw9zGZTIJEiDHlg7M3g1Kl9F3YCEiy8C22Iq6I";
 
 $splited_token = explode(" ", $token);
 
  //Decrypt token
 $decoded = JWT::decode($splited_token[1], SECRET_KEY, array('HS256'));
 
-var_dump($decoded);
+var_dump($decoded);*/
+
+$new = htmlspecialchars('<html><head><title></title></head><body><p>D…ui para salvar o pa&iacute;s</p></body></html>', ENT_QUOTES);
+
+echo $new;
 
 
 

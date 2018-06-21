@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 
 import { LoginService } from './../services/login.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -22,7 +23,11 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   private secureUserRoute = GlobalService.baseUrl + "/secure/user";
 
-  constructor(private http: HttpClient, private loginService: LoginService) { }
+  constructor(
+    private http: HttpClient, 
+    private loginService: LoginService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     // add the the body classes
@@ -49,12 +54,20 @@ export class AdminComponent implements OnInit, OnDestroy {
 
       headers: new HttpHeaders().set('Authorization', 'Bearer '+this.loginService.getUserToken())
   
-    }).subscribe(res => {
+    }).subscribe(
+      res => {
       this.user = res;
       this.user.name = UtilService.nomeResumido(this.user.name);
       console.log("USER AUTENTICADO=>",this.user);
       this.loginService.setUserInfo(this.user);
-    });
+    },
+        err => {
+          console.log("ERROR=>",err);
+          this.router.navigate(["/signin"]);
+          //this.alertService.error("ERROR=>" + err.statusText + "Consulte os Logs");
+
+        }
+  );
   }
 
 }

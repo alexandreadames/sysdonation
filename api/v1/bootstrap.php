@@ -62,7 +62,6 @@ $app->add(function ($req, $res, $next) {
 });
 
 
-
 /**
  * Auth básica do JWT
  * Whitelist - Bloqueia tudo, e só libera os
@@ -80,6 +79,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
         return $response
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+            //->withJson($data, 401);
     }
 ]));
 

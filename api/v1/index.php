@@ -25,6 +25,9 @@ require_once("routes/home-routes.php");
 require_once("routes/user-routes.php");
 //Person Routes
 require_once("routes/person-routes.php");
+//Donations Purposes Routes
+require_once("routes/donations-purposes-routes.php");
+
 //Test Routes COMMENTED
 //require_once("routes/test-routes.php");
 

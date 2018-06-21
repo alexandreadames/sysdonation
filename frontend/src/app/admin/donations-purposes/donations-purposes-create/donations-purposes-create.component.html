@@ -19,26 +19,30 @@
       <div class="col-md-12">
         <div class="box box-success">
           <div class="box-header with-border">
-            <h3 class="box-title">Novo Categoria</h3>
+            <h3 class="box-title">Novo Finalidade de Doação</h3>
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form" action="/ecommerce/admin/categories/create" method="post">
+          <form #donationPurposeCreateForm="ngForm"(ngSubmit)="createDonationPurpose(donationPurposeCreateForm)" novalidate> 
+            
             <div class="box-body">
+              
               <div class="form-group">
-                <label for="descategory">Nome da categoria</label>
-                <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome da categoria">
+                <label for="dp_title">Título</label>
+                <input type="text" class="form-control" id="dp_title" [(ngModel)]="dp_title" name="dp_title" placeholder="Ex. Doação para o projeto SysDonation..." (keyup)="generateSlug()"
+                ngModel>
               </div>
 
               <div class="form-group">
-                <label for="descategory">Nome da categoria</label>
-                <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome da categoria">
+                <label for="dp_slug">URL</label>
+                <input type="text" class="form-control" id="dp_slug" [(ngModel)]="dp_slug" name="dp_slug" placeholder="slug..." ngModel>
               </div>
 
               <div class="form-group">
-                <label for="descategory">Nome da categoria</label>
-                <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome da categoria">
+                <label for="dp_html_content">Conteúdo</label>
+                <ck-editor name="dp_html_content" [(ngModel)]="dp_html_content" skin="moono-lisa" language="br" [fullPage]="true"></ck-editor>
               </div>
+
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

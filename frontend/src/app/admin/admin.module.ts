@@ -12,10 +12,14 @@ import { AdminDashboard2Component } from './admin-dashboard2/admin-dashboard2.co
 import { DonationsPurposesComponent } from './donations-purposes/donations-purposes.component';
 import { DonationsPurposesCreateComponent } from './donations-purposes/donations-purposes-create/donations-purposes-create.component';
 
+import { CKEditorModule } from 'ngx-ckeditor';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CKEditorModule
   ],
   declarations: [
     AdminComponent,
