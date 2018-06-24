@@ -59,6 +59,43 @@ public function getDonationPurposeByLoginSlug($login, $dpslug){
 }
 
 
+public function listAll(){
+
+	$sql = new SQLUtils();
+
+		$results = $sql->select("
+			SELECT dp.id, 
+			       dp.title, 
+			       dp.html_content, 
+			       dp.tbl_users_id, 
+			       dp.dtregister, 
+			       dp.slug, 
+			       u.login, 
+			       u.tbl_persons_id, 
+			       p.NAME, 
+			       p.email, 
+			       p.phone, 
+			       p.site, 
+			       p.cpf 
+			FROM   tbl_donations_purposes dp 
+			       INNER JOIN tbl_users u 
+			               ON dp.tbl_users_id = u.id 
+			       INNER JOIN tbl_persons p 
+			               ON u.tbl_persons_id = p.id 
+			WHERE  1=1
+			"
+			);
+
+		if (count($results)>0){
+			return $results;
+		}
+		else{
+			return array(
+				'msg'=>'Nenhuma página encontrada'
+			);
+		}
+}
+
 
 }
 

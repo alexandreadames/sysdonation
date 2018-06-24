@@ -86,9 +86,7 @@ $decoded = JWT::decode($splited_token[1], SECRET_KEY, array('HS256'));
 
 var_dump($decoded);*/
 
-$new = htmlspecialchars('<html><head><title></title></head><body><p>D…ui para salvar o pa&iacute;s</p></body></html>', ENT_QUOTES);
-
-echo $new;
+echo $_SERVER['REMOTE_ADDR'].'/imgs/';
 
 
 

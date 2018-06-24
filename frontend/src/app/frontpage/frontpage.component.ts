@@ -1,5 +1,7 @@
+import { GlobalService } from './../services/global.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-frontpage',
@@ -9,15 +11,38 @@ import { ActivatedRoute } from '@angular/router';
 export class FrontpageComponent implements OnInit {
 
   login:string;
+  donations_purposes: {};
+  private donationsPurposesRoute = GlobalService.baseUrl + "/donations-purposes";
 
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(
+    private route:ActivatedRoute,
+    private http: HttpClient, 
+    private router: Router,
+  ) { }
 
   ngOnInit() {
       this.route.params.subscribe( params =>
         this.login = params['login']
       )
 
+      this.loadDonationsPurposes();
+
+  }
+
+  loadDonationsPurposes(){
+    this.http.get(this.donationsPurposesRoute).subscribe(
+      res => {
+      console.log("RESULT=>", res);
+      this.donations_purposes = res;
+    },
+        err => {
+          console.log("ERROR=>",err);
+          //this.router.navigate(["/signin"]);
+          //this.alertService.error("ERROR=>" + err.statusText + "Consulte os Logs");
+
+        }
+  );
   }
 
 }

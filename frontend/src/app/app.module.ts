@@ -4,7 +4,7 @@ import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StorageServiceModule} from 'angular-webstorage-service';
 
@@ -47,6 +47,7 @@ import { AlertService } from './_services/index';
     AppRoutingModule,
     AdminModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     StorageServiceModule
   ],

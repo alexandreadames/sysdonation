@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './../user-profile/user-profile.component';
 import { AdminDashboard1Component } from './../admin-dashboard1/admin-dashboard1.component';
 import { AdminComponent } from './../admin.component';
 import { NgModule, Component } from '@angular/core';
@@ -26,16 +27,14 @@ import { DonationsPurposesCreateComponent } from '../donations-purposes/donation
           {
             path: 'donations-purposes',
             component: DonationsPurposesComponent
-            /*children: [  
-                {
-                  path: 'create',
-                  component: DonationsPurposesCreateComponent
-                }
-            ]*/
           },
           {
             path: 'donations-purposes/create',
             component: DonationsPurposesCreateComponent
+          },
+          {
+            path: 'user-profile',
+            component: UserProfileComponent
           }
         ]
       }

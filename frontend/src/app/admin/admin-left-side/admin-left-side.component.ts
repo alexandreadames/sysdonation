@@ -1,6 +1,12 @@
+import { UserprofileService } from './../../services/userprofile.service';
 import { UtilService } from './../../services/util.service';
 import { User } from './../../models/user';
 import { Component, OnInit, Input } from '@angular/core';
+
+export class UserRes{
+  name: string;
+  foto: string;
+}
 
 @Component({
   selector: 'app-admin-left-side',
@@ -10,10 +16,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class AdminLeftSideComponent implements OnInit {
 
   @Input('user') user: User;
+  private userRes: UserRes;
 
-  constructor() { }
+  constructor(private userprofileService: UserprofileService) { }
 
   ngOnInit() {
+    this.userprofileService.currentUser.subscribe(
+      user => this.userRes = user
+    )
   }
+
+
 
 }

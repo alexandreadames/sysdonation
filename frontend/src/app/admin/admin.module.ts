@@ -13,13 +13,19 @@ import { DonationsPurposesComponent } from './donations-purposes/donations-purpo
 import { DonationsPurposesCreateComponent } from './donations-purposes/donations-purposes-create/donations-purposes-create.component';
 
 import { CKEditorModule } from 'ngx-ckeditor';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserprofileService } from '../services/userprofile.service';
+
 
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    CKEditorModule
+    CKEditorModule,
+    FormsModule,    //added here too
+    ReactiveFormsModule //added here too
   ],
   declarations: [
     AdminComponent,
@@ -31,8 +37,10 @@ import { CKEditorModule } from 'ngx-ckeditor';
     AdminDashboard1Component,
     AdminDashboard2Component,
     DonationsPurposesComponent,
-    DonationsPurposesCreateComponent
+    DonationsPurposesCreateComponent,
+    UserProfileComponent
   ],
-  exports: [AdminComponent]
+  exports: [AdminComponent],
+  providers: [UserprofileService]
 })
 export class AdminModule { }
