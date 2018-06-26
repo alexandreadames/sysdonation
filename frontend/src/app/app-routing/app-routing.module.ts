@@ -1,3 +1,4 @@
+import { DonationpurposepageComponent } from './../donationpurposepage/donationpurposepage.component';
 import { RegisterComponent } from './../register/register.component';
 import { FrontpageComponent } from './../frontpage/frontpage.component';
 import { AdminDashboard2Component } from './../admin/admin-dashboard2/admin-dashboard2.component';
@@ -8,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { UserpageComponent } from '../userpage/userpage.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { LoginComponent } from '../login/login.component';
       { path: 'starter', component: StarterComponent },
       { path: 'signin', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'page/:username', component: UserpageComponent },
+      { path: 'page/:username/:donation-purpose-slug', component: DonationpurposepageComponent },
     ])
   ],
   declarations: [],

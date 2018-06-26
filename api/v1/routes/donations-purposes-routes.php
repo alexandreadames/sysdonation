@@ -69,4 +69,25 @@ $app->get('/donations-purposes', function (Request $request, Response $response)
 
 });
 
+/**
+ * GET the donation purpose by login and slug
+ */
+$app->get('/donations-purposes/{username}/{donation-purpose-slug}', function (Request $request, Response $response) use ($app) {
+
+        $route = $request->getAttribute('route');
+        $username = $route->getArgument('username');
+        $donation_purpose_slug = $route->getArgument('donation-purpose-slug'); 
+
+        $dpDAO = new DonationPurposeDAO();
+      
+        $result = $dpDAO->getDonationPurposeByLoginSlug( $username, $donation_purpose_slug);
+
+        $return = $response->withJson($result, 200)
+            ->withHeader('Content-type', 'application/json');
+
+        return $return;
+
+});
+
+
 ?>

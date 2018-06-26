@@ -27,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './_directives/index';
 import { AlertService } from './_services/index';
+import { UserpageComponent } from './userpage/userpage.component';
+import { DonationpurposepageComponent } from './donationpurposepage/donationpurposepage.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AlertService } from './_services/index';
     FrontpageComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    UserpageComponent,
+    DonationpurposepageComponent
   ],
   imports: [
     BrowserModule,

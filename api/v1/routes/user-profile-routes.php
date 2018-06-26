@@ -21,7 +21,7 @@ use \App\Models\Utils\TokenUtils;
 
 
 /**
- * Cadastra uma nova Pessoa
+ * Cadastra ou Atualiza um perfil
  */
 $app->post('/secure/user-profile', function (Request $request, Response $response) use ($app) {
 

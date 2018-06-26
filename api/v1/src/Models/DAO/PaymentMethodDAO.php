@@ -2,21 +2,19 @@
 
 namespace App\Models\DAO;
 
-use \App\Models\Utils\Utils;
+
+class PaymentMethodDAO {
 
 
-class DonationPurposeDAO {
-
-
-public function create($donation_purpose){
+public function createOrUpdate($paymentMethod){
 
 	$sql = new SQLUtils();
 
-		$results = $sql->select("CALL sp_donations_purposes_save(:ptitle, :phtmlcontent, :pslug, :piduser)", array(
-				":ptitle"=>$donation_purpose->getTitle(),
-				":phtmlcontent"=>Utils::prepareHtml($donation_purpose->getHtmlContent()),
-				":pslug"=>$donation_purpose->getSlug(),
-				":piduser"=>$donation_purpose->getIdUser()
+		$results = $sql->select("CALL sp_payment_method_save_or_update(:pdescription, :pclientId, :pclientSecret, :piduser)", array(
+				":pdescription"=>$paymentMethod->getDescription(),
+				":pclientId"=>$paymentMethod->getClientId(),
+				":pclientSecret"=>$paymentMethod->getClientSecret(),
+				":piduser"=>$paymentMethod->getIdUser()
 			)
 		);
 
@@ -24,15 +22,15 @@ public function create($donation_purpose){
 		
 		$response["error"] = false;
 		
-		$response["msg"] = "Criação de Finalidade de Doação com sucesso";
+		$response["msg"] = "Método de pagamento atualizado";
 			
-		$response["data"]["donation_purpose"] = $data;
+		$response["data"]["payment_method"] = $data;
 			
 		return $response;
 
 }
 
-public function getDonationPurposeByLoginSlug($username, $dpslug){
+/*public function getDonationPurposeByLoginSlug($username, $dpslug){
 
 		$sql = new SQLUtils();
 
@@ -94,7 +92,7 @@ public function listAll(){
 				'msg'=>'Nenhuma página encontrada'
 			);
 		}
-}
+}*/
 
 
 }
