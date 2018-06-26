@@ -1,3 +1,4 @@
+import { NotfoundComponent } from './../../notfound/notfound.component';
 import { UserProfileComponent } from './../user-profile/user-profile.component';
 import { AdminDashboard1Component } from './../admin-dashboard1/admin-dashboard1.component';
 import { AdminComponent } from './../admin.component';
@@ -37,7 +38,10 @@ import { DonationsPurposesCreateComponent } from '../donations-purposes/donation
             component: UserProfileComponent
           }
         ]
-      }
+        
+      },
+      { path: '404', component: NotfoundComponent },
+      { path: '**', redirectTo: '404' }
     ])
   ],
   exports: [

@@ -29,6 +29,7 @@ import { AlertComponent } from './_directives/index';
 import { AlertService } from './_services/index';
 import { UserpageComponent } from './userpage/userpage.component';
 import { DonationpurposepageComponent } from './donationpurposepage/donationpurposepage.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DonationpurposepageComponent } from './donationpurposepage/donationpurp
     RegisterComponent,
     AlertComponent,
     UserpageComponent,
-    DonationpurposepageComponent
+    DonationpurposepageComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

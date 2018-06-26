@@ -1,3 +1,4 @@
+import { NotfoundComponent } from './../notfound/notfound.component';
 import { DonationpurposepageComponent } from './../donationpurposepage/donationpurposepage.component';
 import { RegisterComponent } from './../register/register.component';
 import { FrontpageComponent } from './../frontpage/frontpage.component';
@@ -21,6 +22,8 @@ import { UserpageComponent } from '../userpage/userpage.component';
       { path: 'register', component: RegisterComponent },
       { path: 'page/:username', component: UserpageComponent },
       { path: 'page/:username/:donation-purpose-slug', component: DonationpurposepageComponent },
+      //{ path: '404', component: NotfoundComponent },
+      //{ path: '**', redirectTo: '404' }
     ])
   ],
   declarations: [],
