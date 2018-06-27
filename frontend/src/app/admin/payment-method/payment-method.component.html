@@ -1,0 +1,70 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Método de Recebimento :: Mercado Pago 
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/ecommerce/admin"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="/ecommerce/admin/categories">Método de Recebimento</a></li>
+      <li class="active"><a href="/ecommerce/admin/categories/create">Cadastrar/Atualizar</a></li>
+    </ol>
+  </section>
+  
+  <!-- Main content -->
+  <section class="content">
+  
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-success">
+          <div class="box-header with-border">
+            <h3 class="box-title">Método de Pagamento::Credenciais</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form #paymentMethodCreateOrUpdateForm="ngForm"(ngSubmit)="createOrUpdatePaymentMethod(paymentMethodCreateOrUpdateForm)" novalidate> 
+            
+            <div class="box-body">
+              
+              <div class="form-group">
+                <label for="dp_title">CLIENT_ID</label>
+                <input type="text" class="form-control" id="pm_client_id" [(ngModel)]="pm_client_id" name="pm_client_id" placeholder="Ex 5307693471261774"
+                ngModel>
+              </div>
+
+              <div class="form-group">
+                <label for="dp_slug">CLIENT_SECRET</label>
+                <input type="text" class="form-control" id="pm_client_secret" [(ngModel)]="pm_client_secret" name="pm_client_secret" placeholder="Ex. UQ7WfjyA4yycqiIIXd3INptoHLZTJ84c" ngModel>
+              </div>
+
+              <div class="box box-default">
+                <div class="box-header with-border">
+                  <i class="fa fa-warning"></i>
+    
+                  <h3 class="box-title">Atenção</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>Para receber através do Mercado Pago é necessário informar o seu <strong>CLIENT_ID</strong> e <strong>CLIENT_SECRET</strong></p>
+                    <p>
+                      Como obter essa informação?
+                      Clique <a href="https://www.mercadopago.com/mlb/account/credentials?type=basic" target="_blank">AQUI</a>
+                    </p>    
+                </div>
+                <!-- /.box-body -->
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="submit" class="btn btn-success">Cadastrar/Atualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->

@@ -1,3 +1,4 @@
+import { PaymentMethodComponent } from './../payment-method/payment-method.component';
 import { NotfoundComponent } from './../../notfound/notfound.component';
 import { UserProfileComponent } from './../user-profile/user-profile.component';
 import { AdminDashboard1Component } from './../admin-dashboard1/admin-dashboard1.component';
@@ -36,7 +37,12 @@ import { DonationsPurposesCreateComponent } from '../donations-purposes/donation
           {
             path: 'user-profile',
             component: UserProfileComponent
+          },
+          {
+            path: 'payment-method',
+            component: PaymentMethodComponent
           }
+          
         ]
         
       },

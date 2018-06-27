@@ -16,6 +16,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserprofileService } from '../services/userprofile.service';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
 
 
 
@@ -38,7 +39,8 @@ import { UserprofileService } from '../services/userprofile.service';
     AdminDashboard2Component,
     DonationsPurposesComponent,
     DonationsPurposesCreateComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    PaymentMethodComponent
   ],
   exports: [AdminComponent],
   providers: [UserprofileService]
