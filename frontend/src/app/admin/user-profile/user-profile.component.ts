@@ -20,6 +20,7 @@ class UserRes{
 export class UserProfileComponent implements OnInit {
   
   form: FormGroup;
+  formPersonalData: FormGroup;
   loading: boolean = false;
   userProfile: UserProfile;
   userRes: UserRes;
@@ -27,6 +28,8 @@ export class UserProfileComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   private userProfileRoute = GlobalService.baseUrl + "/secure/user-profile";
+  private userPersonalDataProfileRoute = GlobalService.baseUrl + "/secure/user-personaldata-profile";
+  private userPersonalDataRoute = GlobalService.baseUrl + "/secure/person/update";
 
   constructor(
     private fb: FormBuilder,
@@ -53,6 +56,15 @@ export class UserProfileComponent implements OnInit {
       occupation: ['', Validators.required],
       avatar: null
     });
+
+    this.formPersonalData = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      site: ['', Validators.required],
+      address: ['', Validators.required],
+      cpf: ['', Validators.required]
+    });
   }
 
   onFileChange(event) {
@@ -68,6 +80,36 @@ export class UserProfileComponent implements OnInit {
         })
       };
     }
+  }
+
+  onSubmitPersonalData(){
+    const formPersonalDataModel = this.formPersonalData.value;
+    //console.log(formPersonalDataModel);
+    const req = this.http.post<Httpres>(this.userPersonalDataRoute, 
+      //Body
+      formPersonalDataModel,
+  
+       //Headers  
+       {
+  
+        headers: new HttpHeaders().set('Authorization', 'Bearer '+this.loginService.getUserToken())
+    
+      }
+    
+    )
+      .subscribe(
+        res => {
+          if (!res.error){
+            console.log("RESPONSE=>",res);
+          }
+          else{
+            console.log("RESPONSE=>",res);
+          }
+        },
+        err => {
+          console.log("ERROR=>",err);
+        }
+      );
   }
 
   onSubmit() {
@@ -119,7 +161,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   loadProfile(){
-    this.http.get<UserProfile>(this.userProfileRoute,{
+    this.http.get<UserProfile>(this.userPersonalDataProfileRoute,{
 
       headers: new HttpHeaders().set('Authorization', 'Bearer '+this.loginService.getUserToken())
   
@@ -127,6 +169,16 @@ export class UserProfileComponent implements OnInit {
       res => {
       console.log("USER_PROFILE_DATA=>", res);
       this.userProfile = res;
+      
+      //Personal Data
+      this.formPersonalData.get('name').setValue(this.userProfile.name);
+      this.formPersonalData.get('email').setValue(this.userProfile.email);
+      this.formPersonalData.get('phone').setValue(this.userProfile.phone);
+      this.formPersonalData.get('site').setValue(this.userProfile.site);
+      this.formPersonalData.get('address').setValue(this.userProfile.address);
+      this.formPersonalData.get('cpf').setValue(this.userProfile.cpf);
+
+      //User Profile
       this.form.get('description').setValue(this.userProfile.description);
       this.form.get('occupation').setValue(this.userProfile.occupation);
     },

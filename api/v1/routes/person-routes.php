@@ -10,12 +10,18 @@ use \Psr\Http\Message\ResponseInterface as Response;
  * Entities
  */
 use \App\Models\Entity\Person;
+use \App\Models\DAO\PersonDAO;
+
+
+use \App\Models\Utils\TokenUtils;
 
 
 /**
- * Cadastra uma nova Pessoa
+ * Atualiza os dados de uma pessoa
  */
-$app->post('/person', function (Request $request, Response $response) use ($app) {
+$app->post('/secure/person/update', function (Request $request, Response $response) use ($app) {
+
+    $decoded_token = TokenUtils::decodeToken($request);   
 
     $params = (object) $request->getParams();
 
@@ -28,8 +34,11 @@ $app->post('/person', function (Request $request, Response $response) use ($app)
     $person->setAddress($params->address);
     $person->setCPF($params->cpf);
 
+    $personDAO = new PersonDAO();
 
-    $return = $response->withJson(json_encode($person->getName()), 201)
+    $result = $personDAO->updatePerson($person, (int) $decoded_token["userId"]);
+
+    $return = $response->withJson(json_encode($result), 200)
         ->withHeader('Content-type', 'application/json');
     return $return;
 });

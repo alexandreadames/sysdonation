@@ -2,6 +2,7 @@ import { UserprofileService } from './../../services/userprofile.service';
 import { UtilService } from './../../services/util.service';
 import { User } from './../../models/user';
 import { Component, OnInit, Input } from '@angular/core';
+import { UserProfile } from '../../models/userprofile';
 
 export class UserRes{
   name: string;
@@ -15,7 +16,7 @@ export class UserRes{
 })
 export class AdminLeftSideComponent implements OnInit {
 
-  @Input('user') user: User;
+  @Input('user') user: UserProfile;
   private userRes: UserRes;
 
   constructor(private userprofileService: UserprofileService) { }

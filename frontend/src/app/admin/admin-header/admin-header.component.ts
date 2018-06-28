@@ -1,3 +1,4 @@
+import { UserProfile } from './../../models/userprofile';
 import { User } from './../../models/user';
 import { LoginService } from './../../services/login.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,7 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  @Input('user') user: User;
+  @Input('user') user: UserProfile;
 
   constructor(private loginService: LoginService) { 
 

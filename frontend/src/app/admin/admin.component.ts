@@ -7,6 +7,7 @@ import { Httpres } from './../models/httpres';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from '../models/user';
 import { UtilService } from './../services/util.service';
+import { UserProfile } from '../models/userprofile';
 
 @Component({
   selector: 'app-admin',
@@ -19,9 +20,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
   private res: Httpres;
-  private user: User;
+  private user: UserProfile;
 
-  private secureUserRoute = GlobalService.baseUrl + "/secure/user";
+  private userPersonalDataProfileRoute = GlobalService.baseUrl + "/secure/user-personaldata-profile";
 
   constructor(
     private http: HttpClient, 
@@ -34,12 +35,13 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.body.classList.add('skin-blue');
     this.body.classList.add('sidebar-mini');
 
-    if (this.loginService.getUserInfo()){
+    //UPDATE THIS LATER
+    /*if (this.loginService.getUserInfo()){
       this.user = this.loginService.getUserInfo()
     }
-    else{
+    else{*/
       this.loadUserInfo();
-    }
+    //}
   }
 
    ngOnDestroy() {
@@ -50,7 +52,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   loadUserInfo(){
-    this.http.get<User>(this.secureUserRoute,{
+    this.http.get<UserProfile>(this.userPersonalDataProfileRoute,{
 
       headers: new HttpHeaders().set('Authorization', 'Bearer '+this.loginService.getUserToken())
   

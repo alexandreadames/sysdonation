@@ -41,6 +41,24 @@ $app->get('/secure/user', function (Request $request, Response $response) use ($
 });
 
 /**
+ * Pega os dados completos do usuário
+ */
+$app->get('/secure/user-personaldata-profile', function (Request $request, Response $response) use ($app) { 
+
+        $decoded_token = TokenUtils::decodeToken($request);   
+
+        $userDAO = new UserDAO();
+
+        $result = $userDAO->getPersonalDataAndProfile( (int) $decoded_token["userId"]);
+
+        $return = $response->withJson($result, 200)
+            ->withHeader('Content-type', 'application/json');
+
+        return $return;
+
+});
+
+/**
  * Cadastra um novo usuário
  */
 $app->post('/user/register', function (Request $request, Response $response) use ($app) {
@@ -98,5 +116,4 @@ $app->post('/user/login', function (Request $request, Response $response) use ($
     
     
 });
-
 ?>

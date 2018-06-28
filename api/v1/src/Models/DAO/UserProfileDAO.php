@@ -55,34 +55,6 @@ public function createOrUpdate($userprofile){
 			
 		$response["data"]["result"]= $data;
 
-		
-
-		//Debug Mode
-
-		/*$response = array(
-			"sql" => "
-			UPDATE tbl_profile 
-            	SET 
-                  description = :description, 
-                  profile_picture = :profile_picture, 
-                  filetype = :filetype,
-                  filename = :filename,
-                  occupation = :occupation
-            WHERE 
-                  tbl_users_id = :iduser AND 
-                  id = :id",
-            "bind-params" => array(
-				":description"=>$userprofile->getDescription(),
-				":profile_picture"=>$userprofile->getProfilePicture(),
-				":filetype"=>$userprofile->getFileType(),
-				":filename"=>$userprofile->getFileName(),
-				":occupation"=>$userprofile->getOccupation(),
-				":iduser"=>$userprofile->getIdUser(),
-				":id" => $userprofile->getId()
-			)
-		);*/
-
-
 	}
 
 	else {
@@ -151,6 +123,7 @@ public function getProfileUserById($iduser){
 		return $results[0];
 
 }
+
 
 
 }

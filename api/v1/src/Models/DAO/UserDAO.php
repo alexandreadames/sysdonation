@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models\DAO;
 
@@ -122,6 +122,35 @@ public function getUserById($iduser){
 
 		return $results[0];
 
+}
+
+public function getPersonalDataAndProfile($iduser) {
+
+	$sql = new SQLUtils();
+
+	$results = $sql->select("
+			SELECT p.name, 
+			       p.email, 
+			       p.phone, 
+			       p.site, 
+			       p.address, 
+			       p.cpf, 
+			       prof.description, 
+			       prof.occupation, 
+			       prof.profile_picture, 
+			       prof.filetype, 
+			       prof.filename 
+			FROM   tbl_persons p 
+			       INNER JOIN tbl_users u 
+			               ON p.id = u.tbl_persons_id 
+			       INNER JOIN tbl_profile prof 
+			               ON u.id = prof.tbl_users_id 
+			WHERE u.id = :iduser;", 
+			array(
+				":iduser"=>$iduser
+			));
+
+		return $results[0];
 }
 
 
