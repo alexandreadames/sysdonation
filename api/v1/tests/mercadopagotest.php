@@ -84,7 +84,7 @@ $preference_data = array(
 
 $preference = $mp->create_preference($preference_data);
 
-print_r($preference["response"]["init_point"]);
+print_r($preference["response"]);
 ?>
 
 <!doctype html>

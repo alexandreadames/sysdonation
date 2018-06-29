@@ -1,74 +1,196 @@
 <div class="wrapper hold-transition skin-blue layout-top-nav">
-
-  <header class="main-header">
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <!--INSERT HERE OTHER DROPDOWNS MENUS-->
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- The user image in the navbar-->
-                <img src="assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header">
-                  <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                  <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2012</small>
-                  </p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-  </header>
-  <!-- Full Width Column -->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Main content -->
-    <section class="content">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+            {{donationPurposePageData?.data.donationpurpose.title}}
+        </h1>
+      </section>
+  
+      <!-- Main content -->
+      <section class="content">
+  
+        <div class="row">
+          <div class="col-md-3">
+  
+            <!-- Profile Image -->
+            <div class="box box-primary">
+              <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="data:{{donationPurposePageData?.data.owner.filetype}};base64,{{donationPurposePageData?.data.owner.profile_picture}}" alt="User profile picture">
+  
+                <h3 class="profile-username text-center">{{donationPurposePageData?.data.owner.name}}</h3>
+  
+                <p class="text-muted text-center">{{donationPurposePageData?.data.owner.occupation}}</p>
+  
+                <!-- <ul class="list-group list-group-unbordered">
+                  <li class="list-group-item">
+                    <b>Followers</b> <a class="pull-right">1,322</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Following</b> <a class="pull-right">543</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Friends</b> <a class="pull-right">13,287</a>
+                  </li>
+                </ul> -->
+  
+                <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+  
+            <!-- About Me Box -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Sobre mim</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <!-- <strong><i class="fa fa-book margin-r-5"></i> Education</strong> -->
+  
+                <p class="text-muted">
+                    {{donationPurposePageData?.data.owner.description}}
+                </p>
+                <!--
+                <hr>
+  
+                <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+  
+                <p class="text-muted">Malibu, California</p>
+  
+                <hr>
+  
+                <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+  
+                <p>
+                  <span class="label label-danger">UI Design</span>
+                  <span class="label label-success">Coding</span>
+                  <span class="label label-info">Javascript</span>
+                  <span class="label label-warning">PHP</span>
+                  <span class="label label-primary">Node.js</span>
+                </p>
+  
+                <hr>
+  
+                <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+  
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p> -->
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-5">
+              <!-- Default box -->
+            <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{donationPurposePageData?.data.donationpurpose.title}}</h3>
+                </div>
+                <div class="box-body" [innerHTML]="donationPurposePageData?.data.donationpurpose.html_content">
+                    
+                </div> 
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    
+                  <!-- <a class="btn btn-app">
+                    <i class="fas fa-donate"></i> Fazer uma doação
+                  </a> -->
+                </div>
+                <!-- /.box-footer-->
+              </div>
+              <!-- /.box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-4">
+              <div class="box box-success">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Fazer uma doação</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <!-- form start -->
+                  <form #makeAdonationForm="ngForm"(ngSubmit)="makeADonation(makeAdonationForm)" novalidate> 
+                    
+                    <div class="box-body">
+                      
+                      <div class="form-group">
+                        <label for="name">Seu Nome</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Seu Nome..." ngModel>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="surname">Seu SobreNome</label>
+                          <input type="text" class="form-control" id="surname" name="surname" placeholder="Seu Sobre Nome..." ngModel>
+                      </div>
 
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
-        </div>
-        <div class="box-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
+                      <div class="form-group">
+                          <label for="email">Seu Email</label>
+                          <input type="text" class="form-control" id="email" name="email" placeholder="Seu Email..." ngModel>
+                      </div>
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-      reserved.
+                      <div class="row form-group">
+                          <div class="col-xs-3">
+                            <label for="phone_area_code">DDD</label>
+                            <input type="text" class="form-control" id="phone_area_code" name="phone_area_code" placeholder="Ex. (084)" ngModel>
+                          </div>
+                          <div class="col-xs-6">
+                              <label for="phone_number">Celular</label>
+                              <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Ex. 9999-9999" ngModel>
+                          </div>
+                      </div>
+                      
+                      <div class="form-group">
+                          <label for="cpf">CPF</label>
+                          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF..." ngModel>
+                      </div>
+
+                      <div class="row form-group">
+                          <div class="col-xs-6">
+                            <label for="street_name">Rua</label>
+                            <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Rua" ngModel>
+                          </div>
+                          <div class="col-xs-2">
+                              <label for="street_number">Nº</label>
+                              <input type="text" class="form-control" id="street_number" name="street_number" ngModel>
+                          </div>
+                          <div class="col-xs-4">
+                              <label for="zip_code">CEP</label>
+                              <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Ex. 59555-089" ngModel>
+                          </div>
+                      </div>
+        
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="form-group">
+                            <!-- <div class="col-xs-6 has-success">
+                                <label class="control-label" for="donateValue"><i class="fas fa-donate"></i> Valor da doação</label>
+                                <input type="text" class="form-control" id="donateValue" name="donateValue" placeholder="Quanto você deseja doar?" ngModel>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-donate"></i> Fazer uma doação</button>      
+                            </div> -->
+                            
+                            <div class="input-group has-success">
+                                <input type="number" maxlength="4" class="form-control" id="donateValue" name="donateValue" placeholder="Quanto você deseja doar?" ngModel>
+                                <div class="input-group-btn">
+                                  <button type="submit" class="btn btn-success">Fazer uma doação</button>
+                                </div>
+                                <!-- /btn-group -->
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+          </div>
+        </div>
+        <!-- /.row -->
+  
+      </section>
+      <!-- /.content -->
     </div>
-    <!-- /.container -->
-  </footer>
-</div>
-<!-- ./wrapper -->
+    <!-- /.content-wrapper -->
+    </div>
 

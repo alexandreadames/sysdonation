@@ -37,9 +37,19 @@ public function getDonationPurposeByLoginSlug($username, $dpslug){
 		$sql = new SQLUtils();
 
 		$results = $sql->select("
-			SELECT * FROM 
-				tbl_donations_purposes dp 
-			INNER JOIN tbl_users u ON dp.tbl_users_id = u.id 
+			SELECT p.name,
+			       prof.description,
+			       prof.occupation,
+			       prof.profile_picture,
+			       prof.filetype,
+			       prof.filename,
+			       dp.title,
+			       dp.html_content,
+			       dp.slug
+			FROM tbl_donations_purposes dp
+			INNER JOIN tbl_users u ON dp.tbl_users_id = u.id
+			INNER JOIN tbl_persons p ON u.tbl_persons_id = p.id
+			INNER JOIN tbl_profile prof ON u.id = prof.tbl_users_id
 			WHERE 
 				login = :username 
 			AND dp.slug = :slug;", 
@@ -49,13 +59,36 @@ public function getDonationPurposeByLoginSlug($username, $dpslug){
 			));
 
 		if (count($results)>0){
-			return $results[0];
-		}
-		else{
-			return array(
-				'msg'=>'Nenhuma página encontrada'
+			//Make a custom response...
+
+			$response = array(
+				'error' => false,
+				'data' => array(
+					'owner' => array(
+						'name' => $results[0]['name'],
+						'occupation' => $results[0]['occupation'],
+						'description' => $results[0]['description'],
+						'profile_picture' => $results[0]['profile_picture'],
+						'filetype' => $results[0]['filetype'],
+					),
+					'donationpurpose'=> array(
+						'title' => $results[0]['title'],
+						'html_content' => Utils::decodeHtml($results[0]['html_content']),
+						'slug' => $results[0]['slug']
+					)
+				)
 			);
 		}
+		else{
+			$response = array(
+				'error' => true,
+				'data' => array(
+					'msg' => 'Nenhuma página encontrada'
+				)
+			);
+		}
+
+		return $response;
 }
 
 
