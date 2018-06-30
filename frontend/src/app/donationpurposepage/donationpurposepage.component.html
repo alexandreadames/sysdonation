@@ -153,7 +153,7 @@
                           </div>
                           <div class="col-xs-2">
                               <label for="street_number">Nº</label>
-                              <input type="text" class="form-control" id="street_number" name="street_number" ngModel>
+                              <input type="number" class="form-control" id="street_number" name="street_number" ngModel>
                           </div>
                           <div class="col-xs-4">
                               <label for="zip_code">CEP</label>
@@ -174,9 +174,9 @@
                             </div> -->
                             
                             <div class="input-group has-success">
-                                <input type="number" maxlength="4" class="form-control" id="donateValue" name="donateValue" placeholder="Quanto você deseja doar?" ngModel>
+                                <input type="number" maxlength="4" class="form-control" id="donation_value" name="donation_value" placeholder="Quanto você deseja doar?" ngModel>
                                 <div class="input-group-btn">
-                                  <button type="submit" class="btn btn-success">Fazer uma doação</button>
+                                  <button type="submit" class="btn btn-success"><i class="fas fa-donate"></i> FAZER UMA DOAÇÃO</button>
                                 </div>
                                 <!-- /btn-group -->
                             </div>

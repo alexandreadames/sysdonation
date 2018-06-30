@@ -37,12 +37,15 @@ public function getDonationPurposeByLoginSlug($username, $dpslug){
 		$sql = new SQLUtils();
 
 		$results = $sql->select("
-			SELECT p.name,
+			SELECT 
+				   u.id as userid,
+				   p.name,
 			       prof.description,
 			       prof.occupation,
 			       prof.profile_picture,
 			       prof.filetype,
 			       prof.filename,
+			       dp.id as donationpurpose_id,
 			       dp.title,
 			       dp.html_content,
 			       dp.slug
@@ -65,6 +68,7 @@ public function getDonationPurposeByLoginSlug($username, $dpslug){
 				'error' => false,
 				'data' => array(
 					'owner' => array(
+						'iduser'=> $results[0]['userid'],
 						'name' => $results[0]['name'],
 						'occupation' => $results[0]['occupation'],
 						'description' => $results[0]['description'],
@@ -72,6 +76,7 @@ public function getDonationPurposeByLoginSlug($username, $dpslug){
 						'filetype' => $results[0]['filetype'],
 					),
 					'donationpurpose'=> array(
+						'donationpurpose_id' => $results[0]['donationpurpose_id'],
 						'title' => $results[0]['title'],
 						'html_content' => Utils::decodeHtml($results[0]['html_content']),
 						'slug' => $results[0]['slug']

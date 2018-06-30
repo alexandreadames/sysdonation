@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Payer } from './../models/payer';
+import { Donation } from '../models/donation';
 import { GlobalService } from './../services/global.service';
 import { HttpClient } from '@angular/common/http';
 import { DonationPurposePageRes } from './../models/donationpurposepage';
@@ -18,7 +18,7 @@ export class DonationpurposepageComponent implements OnInit {
   donationPurposePageSlug: string;
   private donationsPurposesRoute = GlobalService.baseUrl + "/donations-purposes";
   donationPurposePageData: {};
-  payer: Payer = new Payer();
+  donation: Donation;
 
 
   constructor(
@@ -60,8 +60,7 @@ export class DonationpurposepageComponent implements OnInit {
 
   makeADonation(f: NgForm) {
     if (f.valid){
-      this.payer = f.value;
-      console.log(this.payer); 
+      console.log(f.value);
     }
   }
 

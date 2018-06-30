@@ -4,7 +4,7 @@ namespace App\Models\Entity;
 
 
 /**
- * @Entity @Table(name="tbl_tbl_donations_purposes")
+ * @Entity @Table(name="tbl_donations_purposes")
  **/
 class DonationPurpose {
 
