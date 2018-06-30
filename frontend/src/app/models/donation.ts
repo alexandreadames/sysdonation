@@ -1,19 +1,16 @@
 export class Donation {
-    payer:{
       name : string;
       surname : string;
       email : string;
-      date_created : Date;
-      phone : {
-        area_code: string,
-        number: string
-      }   
+      phone_area_code: string;
+      phone_number: string;
       cpf: string;
-      address: {
-        street_name: string,
-        street_number: number,
-        zip_code: string
-      }
-    }
-    donationValue: number;
+      street_name: string;
+      street_number: number;
+      zip_code: string;
+      donation_value: number;
+      donation_code: string;
+      donation_title: string;
+      userid: number;
+      donationpurpose_id: number;
   }

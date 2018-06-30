@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { DonationPurposePageRes } from './../models/donationpurposepage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { DonationRes } from '../models/DonationRes';
 
 @Component({
   selector: 'app-donationpurposepage',
@@ -17,7 +18,8 @@ export class DonationpurposepageComponent implements OnInit {
   username: string;
   donationPurposePageSlug: string;
   private donationsPurposesRoute = GlobalService.baseUrl + "/donations-purposes";
-  donationPurposePageData: {};
+  private donationRoute = GlobalService.baseUrl + "/donation";
+  donationPurposePageData: DonationPurposePageRes;
   donation: Donation;
 
 
@@ -60,7 +62,37 @@ export class DonationpurposepageComponent implements OnInit {
 
   makeADonation(f: NgForm) {
     if (f.valid){
-      console.log(f.value);
+      this.donation = f.value;
+      this.donation.donation_title = this.donationPurposePageData.data.donationpurpose.title;
+      this.donation.donation_code = this.donationPurposePageData.data.donationpurpose.slug;
+      this.donation.donationpurpose_id = this.donationPurposePageData.data.donationpurpose.donationpurpose_id;
+      this.donation.userid = this.donationPurposePageData.data.owner.iduser;
+      console.log("DATA FOR SEND=>", this.donation);
+
+      let donation: Donation = this.donation;
+
+      const req = this.http.post<DonationRes>(this.donationRoute, 
+        donation
+      )
+        .subscribe(
+          res => {
+            if (!res.error){
+              console.log(res);
+              if (res.data.donation.mp_link_order){
+                //Redirect to pagseguro
+                window.location.href= res.data.donation.mp_link_order;
+              }
+              
+            }
+            else{
+              console.log(res.msg);
+            }
+          },
+          err => {
+            console.log("ERROR=>",err.statusText);
+          }
+        );
+
     }
   }
 

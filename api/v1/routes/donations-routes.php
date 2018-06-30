@@ -52,6 +52,8 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     $donation->setDonorStreetNumber($params->street_number);
     $donation->setDonorZipCode($params->zip_code);
     $donation->setDonationValue($params->donation_value);
+    $donation->setDonationCode($params->donation_code);
+    $donation->setDonationTitle($params->donation_title);
 
     $userid = $params->userid;
 
@@ -66,16 +68,14 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     //Generate Mp Link Order
     $donation->setMpLinkOrder($linkMpOrder);
 
-    //$test = Utils::test();
-
     $donation->setDonationPurposeId($params->donationpurpose_id);
     $donation->setUserId($userid);
 
-    //$donationDAO = new DonationDAO();
+    $donationDAO = new DonationDAO();
 
-    //$result = $donationDAO->create($donation);
+    $result = $donationDAO->create($donation);
     
-    $return = $response->withJson((array)$donation, 201)
+    $return = $response->withJson($result, 201)
         ->withHeader('Content-type', 'application/json');
     return $return;
 

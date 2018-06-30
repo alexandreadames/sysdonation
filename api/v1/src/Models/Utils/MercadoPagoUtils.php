@@ -15,11 +15,11 @@ Class MercadoPagoUtils {
 	$preference_data = array(
 	    "items" => array(
 	        array(
-	            "id" => "slug-donation-purpose",
-	            "title" => "Title Donation Purpose",
+	            "id" => $donation->getDonationCode(),
+	            "title" => $donation->getDonationTitle(),
 	            "currency_id" => "BRL",
 	            "picture_url" =>"https://www.mercadopago.com/org-img/MP3/home/logomp3.gif",
-	            "description" => "Description Donation Purpose",
+	            "description" => $donation->getDonationTitle(),
 	            "category_id" => "Donation",
 	            "quantity" => 1,
 	            "unit_price" => $donation->getDonationValue()
@@ -83,7 +83,16 @@ Class MercadoPagoUtils {
 
 	$preference = $mp->create_preference($preference_data);
 
-	return $preference["response"]["init_point"];
+	/*
+	 * Production
+	*/
+	//Uncomment this for production mode
+	//return $preference["response"]["init_point"];
+	/*
+	 * SandBox - https://www.mercadopago.com.br/developers/pt/solutions/payments/basic-checkout/test/basic-sandbox/
+	 Test Payments - https://www.mercadopago.com.br/developers/pt/solutions/payments/basic-checkout/test/test-payments/
+	*/
+	return $preference["response"]["sandbox_init_point"];
 
 	}
 

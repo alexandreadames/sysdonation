@@ -93,6 +93,18 @@ class Donation {
      */
     protected $donationValue;
 
+    /**
+     * @var string
+     * @Column(type="string") 
+     */
+    protected $donationCode;
+
+    /**
+     * @var string
+     * @Column(type="string") 
+     */
+    protected $donationTitle;
+
 	/**
      * @var string
      * @Column(type="string") 
@@ -158,6 +170,14 @@ class Donation {
         return $this->donationValue;
     }
 
+    public function getDonationCode(){
+        return $this->donationCode;
+    }
+
+    public function getDonationTitle(){
+        return $this->donationTitle;
+    }
+
     public function getMpLinkOrder(){
         return $this->mpLinkOrder;
     }
@@ -218,6 +238,14 @@ class Donation {
 
     public function setDonationValue($donationValue){
         $this->donationValue = $donationValue;
+    }
+
+    public function setDonationCode($donationCode){
+        return $this->donationCode = $donationCode;
+    }
+
+    public function setDonationTitle($donationTitle){
+        return $this->donationTitle = $donationTitle;
     }
 
     public function setMpLinkOrder($mpLinkOrder){
