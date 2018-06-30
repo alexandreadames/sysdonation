@@ -26,17 +26,17 @@
                   <thead>
                     <tr>
                       <th style="width: 10px">#</th>
-                      <th>Nome da Categoria</th>
+                      <th>Título</th>
                       <th style="width: 140px">&nbsp;</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Doação para o abrigo dos animais</td>
+                    <tr *ngFor="let dp of donationsPurposes; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{dp.title}}</td>
                       <td>
                         <a href="/ecommerce/admin/categories/{$value.idcategory}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                        <a href="/ecommerce/admin/categories/{$value.idcategory}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                        <a (click)="deleteDonationPurpose(dp.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                       </td>
                     </tr>
                   </tbody>

@@ -12,7 +12,8 @@ use \App\Models\DAO\DonationPurposeDAO;
 
 
 /**
- * Cadastra um novo usuário
+ * CREATE
+ * Create a new Donation Purpose
  */
 $app->post('/secure/donations-purposes/create', function (Request $request, Response $response) use ($app) {
 
@@ -47,6 +48,7 @@ $app->post('/secure/donations-purposes/create', function (Request $request, Resp
 });
 
 /**
+ * READ - PUBLIC
  * GET All Donations Purposes
  */
 $app->get('/donations-purposes', function (Request $request, Response $response) use ($app) {
@@ -68,6 +70,55 @@ $app->get('/donations-purposes', function (Request $request, Response $response)
         return $return;
 
 });
+
+/**
+ * READ - SECURE
+ * GET All Donations Purposes
+ */
+$app->get('/secure/donations-purposes', function (Request $request, Response $response) use ($app) {
+
+        $decoded_token = TokenUtils::decodeToken($request);
+
+        $dpDAO = new DonationPurposeDAO();
+
+        $result = $dpDAO->getDonationsPurposesByUser( (int) $decoded_token["userId"]);
+
+        foreach ($result as &$dp) {
+            $dp["html_content"] = Utils::decodeHtml($dp["html_content"]); 
+        }
+
+        $return = $response->withJson($result, 200)
+            ->withHeader('Content-type', 'application/json');
+
+        return $return;
+
+});
+
+
+/**
+ * UPDATE
+ * UPDATES an doantion purpose
+ */
+
+/**
+ * DELETE
+ * DELETES an doantion purpose
+ * VERIFICAR POSTERIORMENTE SE O USUÁRIO QUE ESTÁ MANDADO O DELETE TEM PERMISSÃO PARA DELETAR
+ */
+$app->delete('/secure/donation-purpose/{id}', function (Request $request, Response $response) use ($app) {
+    $route = $request->getAttribute('route');
+    $id = $route->getArgument('id');
+
+    $dpDAO = new DonationPurposeDAO();
+
+    $result = $dpDAO->delete($id);
+
+    $return = $response->withJson($result, 200)
+        ->withHeader('Content-type', 'application/json');
+    return $return;
+});
+
+
 
 /**
  * GET the donation purpose by login and slug
