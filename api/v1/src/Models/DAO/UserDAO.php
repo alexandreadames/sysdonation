@@ -143,7 +143,7 @@ public function getPersonalDataAndProfile($iduser) {
 			FROM   tbl_persons p 
 			       INNER JOIN tbl_users u 
 			               ON p.id = u.tbl_persons_id 
-			       INNER JOIN tbl_profile prof 
+			       LEFT JOIN tbl_profile prof 
 			               ON u.id = prof.tbl_users_id 
 			WHERE u.id = :iduser;", 
 			array(

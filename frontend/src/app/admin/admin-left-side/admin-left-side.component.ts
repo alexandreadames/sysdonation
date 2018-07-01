@@ -25,8 +25,7 @@ export class AdminLeftSideComponent implements OnInit {
     this.userprofileService.currentUser.subscribe(
       user => this.userRes = user
     )
+    console.log("USER=>",this.user);
   }
-
-
-
+  
 }

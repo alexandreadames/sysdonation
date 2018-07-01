@@ -217,13 +217,13 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="user-image" alt="User Image">
+            <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="user-image" alt="User Image" onError="this.src='/assets/img/nopicture.png';">
                 <span class="hidden-xs">{{user?.name}}</span>
             </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="img-circle" alt="User Image">
+              <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="img-circle" alt="User Image" onError="this.src='/assets/img/nopicture.png';">
 
               <p>
                 {{user?.name}}
@@ -243,9 +243,9 @@
           </ul>
         </li>
         <!-- Control Sidebar Toggle Button -->
-        <li>
+        <!-- <li>
           <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </nav>

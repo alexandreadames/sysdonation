@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="img-circle" alt="User Image">
+        <img src="data:{{user?.filetype}};base64,{{user?.profile_picture}}" class="img-circle" alt="User Image" onError="this.src='/assets/img/nopicture.png';">
       </div>
       <div class="pull-left info">
         <p>{{(user?.name)}}</p>
