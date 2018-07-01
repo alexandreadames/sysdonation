@@ -1,3 +1,4 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { AdminDashboard1Component } from './admin-dashboard1/admin-dashboard1.component';
 import { AdminControlSidebarComponent } from './admin-control-sidebar/admin-control-sidebar.component';
@@ -43,6 +44,6 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     PaymentMethodComponent
   ],
   exports: [AdminComponent],
-  providers: [UserprofileService]
+  providers: [UserprofileService, JwtHelperService]
 })
 export class AdminModule { }

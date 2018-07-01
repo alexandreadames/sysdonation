@@ -12,7 +12,7 @@ export class UtilService {
     return firstName+" "+lastName;
   }
 
-  static slugify(text: string){
+  static slugify(text: string)
     {
       var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
       var to   = "aaaaaeeeeeiiiiooooouuuunc------";
@@ -28,4 +28,5 @@ export class UtilService {
           .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
           .replace(/\-\-+/g, '-');        // Replace multiple - with single -
 
-}
+    }
+  }

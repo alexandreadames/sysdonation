@@ -36,4 +36,8 @@ export class AdminHeaderComponent implements OnInit {
 
   }
 
+  public logOut() {
+    this.loginService.logOut();
+  }
+
 }

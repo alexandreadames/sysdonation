@@ -1,3 +1,5 @@
+import { AuthService } from './services/auth-service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { GlobalService } from './services/global.service';
 import { LoginService } from './services/login.service';
 import { AdminModule } from './admin/admin.module';
@@ -57,7 +59,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
     HttpClientModule,
     StorageServiceModule
   ],
-  providers: [LoginService, GlobalService, AlertService],
+  providers: [
+    LoginService, 
+    GlobalService, 
+    AlertService, 
+    AuthGuardService, 
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

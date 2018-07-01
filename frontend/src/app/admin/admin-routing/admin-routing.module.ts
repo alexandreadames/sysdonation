@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../../services/auth-guard.service';
 import { PaymentMethodComponent } from './../payment-method/payment-method.component';
 import { NotfoundComponent } from './../../notfound/notfound.component';
 import { UserProfileComponent } from './../user-profile/user-profile.component';
@@ -9,6 +10,9 @@ import { RouterModule } from '@angular/router';
 import { Routes } from "@angular/router";
 import { DonationsPurposesComponent } from '../donations-purposes/donations-purposes.component';
 import { DonationsPurposesCreateComponent } from '../donations-purposes/donations-purposes-create/donations-purposes-create.component';
+import { 
+  AuthGuardService as AuthGuard 
+} from '../../services/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -16,6 +20,7 @@ import { DonationsPurposesCreateComponent } from '../donations-purposes/donation
       {
         path: 'admin',
         component: AdminComponent,
+        canActivate: [AuthGuard],
         children: [
           {
             path: '',
