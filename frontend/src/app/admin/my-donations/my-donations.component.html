@@ -1,0 +1,52 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Lista de doações recebidas
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="#">Lista de doações recebidas</a></li>
+      </ol>
+    </section>
+    
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-primary">
+                <div class="box-body no-padding">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Título</th>
+                        <th>Valor doado</th>
+                        <th style="width: 140px">&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let d of mydonations; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{d.title}}</td>
+                        <td>{{d.donation_value}}</td>
+                        <td>
+                          <a href="#" class="btn btn-success btn-xs"><i class="fas fa-receipt"></i> Imprimir Recibo</a>
+                          <!-- <a (click)="deleteDonationPurpose(dp.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a> -->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.box-body -->
+              </div>
+        </div>
+      </div>
+    
+    </section>
+    <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+   
+  

@@ -20,6 +20,16 @@ Class Utils {
 		return html_entity_decode($data);
 	}
 
+	public static function prepareResponse($iserror,$msg, $data = array()){
+
+		return array(
+			"error"=> $iserror,
+			"msg" => $msg,
+			"data" => $data
+		);
+
+	}
+
 }
 
  

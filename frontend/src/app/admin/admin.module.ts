@@ -18,6 +18,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserprofileService } from '../services/userprofile.service';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { MyDonationsComponent } from './my-donations/my-donations.component';
 
 
 
@@ -41,7 +42,8 @@ import { PaymentMethodComponent } from './payment-method/payment-method.componen
     DonationsPurposesComponent,
     DonationsPurposesCreateComponent,
     UserProfileComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    MyDonationsComponent
   ],
   exports: [AdminComponent],
   providers: [UserprofileService, JwtHelperService]

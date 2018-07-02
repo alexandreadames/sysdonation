@@ -1,3 +1,4 @@
+import { MyDonationsComponent } from './../my-donations/my-donations.component';
 import { AuthGuardService } from './../../services/auth-guard.service';
 import { PaymentMethodComponent } from './../payment-method/payment-method.component';
 import { NotfoundComponent } from './../../notfound/notfound.component';
@@ -38,6 +39,10 @@ import {
           {
             path: 'donations-purposes/create',
             component: DonationsPurposesCreateComponent
+          },
+          {
+            path: 'mydonations',
+            component: MyDonationsComponent
           },
           {
             path: 'user-profile',

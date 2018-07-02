@@ -165,35 +165,47 @@ public function getDonationsPurposesByUser($iduser){
 			)
 		);
 
-		if (count($results)>0){
-			return $results;
-		}
-		else{
-			return array(
-				'msg'=>'Nenhuma página encontrada'
-			);
-		}
+		return $results;
 }
 
 
-public function delete($id) {
+public function delete($id, $iduser) {
 
 	$sql = new SQLUtils();
 
-		$sql->query("
-			DELETE FROM tbl_donations_purposes WHERE id = :id
+		$result = $sql->query("
+			DELETE FROM tbl_donations_purposes WHERE id = :id AND tbl_users_id = :iduser
 			",
 			array(
-			  ':id' => $id
+			  ':id' => $id,
+			  ':iduser' => $iduser
 			)
 		);
 
-		
-		$response["error"] = false;
-		
-		$response["msg"] = "Finalidade de doação excluída com sucesso!";
+		if ($result) {
 			
-		return $response;
+			$error = false;
+		
+			$msg = "Finalidade de doação excluída com sucesso!";
+
+			$data = array(
+				"result" => $result
+			);
+		}
+		else {
+
+			$error = true;
+		
+			$msg = "Não foi possível executar essa operação";	
+
+			$data = array(
+				"result" => $result
+			);
+
+		}
+		
+			
+		return Utils::prepareResponse($error, $msg, $data);
 
 }
 

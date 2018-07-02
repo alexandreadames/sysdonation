@@ -15,7 +15,7 @@ use \App\Models\DAO\DonationPurposeDAO;
  * CREATE
  * Create a new Donation Purpose
  */
-$app->post('/secure/donations-purposes/create', function (Request $request, Response $response) use ($app) {
+$app->post('/secure/donations-purposes', function (Request $request, Response $response) use ($app) {
 
     $decoded_token = TokenUtils::decodeToken($request);   
 
@@ -73,7 +73,7 @@ $app->get('/donations-purposes', function (Request $request, Response $response)
 
 /**
  * READ - SECURE
- * GET All Donations Purposes
+ * GET All Donations Purposes by User
  */
 $app->get('/secure/donations-purposes', function (Request $request, Response $response) use ($app) {
 
@@ -83,8 +83,10 @@ $app->get('/secure/donations-purposes', function (Request $request, Response $re
 
         $result = $dpDAO->getDonationsPurposesByUser( (int) $decoded_token["userId"]);
 
-        foreach ($result as &$dp) {
-            $dp["html_content"] = Utils::decodeHtml($dp["html_content"]); 
+        if ($result) {
+            foreach ($result as &$dp) {
+                $dp["html_content"] = Utils::decodeHtml($dp["html_content"]); 
+            }
         }
 
         $return = $response->withJson($result, 200)
@@ -109,9 +111,11 @@ $app->delete('/secure/donation-purpose/{id}', function (Request $request, Respon
     $route = $request->getAttribute('route');
     $id = $route->getArgument('id');
 
+    $decoded_token = TokenUtils::decodeToken($request);
+
     $dpDAO = new DonationPurposeDAO();
 
-    $result = $dpDAO->delete($id);
+    $result = $dpDAO->delete($id, (int) $decoded_token["userId"]);
 
     $return = $response->withJson($result, 200)
         ->withHeader('Content-type', 'application/json');

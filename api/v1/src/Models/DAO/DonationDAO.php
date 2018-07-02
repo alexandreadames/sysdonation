@@ -51,5 +51,37 @@ class DonationDAO {
 
 }
 
+public function getDonationsByUser($iduser){
+
+	$sql = new SQLUtils();
+
+		$results = $sql->select("
+			SELECT 
+				d.id, 
+				d.donation_value, 
+				d.tbl_donationspurposes_id, 
+				d.tbl_users_id,
+				d.donor_name, 
+				d.donor_cpf, 
+				d.donor_surname, 
+				d.donor_email, 
+				dp.title, 
+				dp.slug 
+			FROM tbl_donations d 
+       		INNER JOIN tbl_donations_purposes dp 
+               ON d.tbl_donationspurposes_id = dp.id
+			WHERE 1=1  
+			AND d.tbl_users_id = :iduser
+			",
+			array(
+				"iduser" => $iduser
+			)
+		);
+
+		return $results;
 }
+
+}
+
+
 ?>

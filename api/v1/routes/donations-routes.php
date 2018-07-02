@@ -6,6 +6,7 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 use \App\Models\Utils\Utils;
+use \App\Models\Utils\TokenUtils;
 use \App\Models\Utils\MercadoPagoUtils;
 /**
  * Entities
@@ -86,6 +87,26 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     
     
 });
+
+/**
+ * READ - SECURE
+ * GET All Donations Purposes by User
+ */
+$app->get('/secure/donations', function (Request $request, Response $response) use ($app) {
+
+        $decoded_token = TokenUtils::decodeToken($request);
+
+        $dpDAO = new DonationDAO();
+
+        $result = $dpDAO->getDonationsByUser( (int) $decoded_token["userId"]);
+
+        $return = $response->withJson($result, 200)
+            ->withHeader('Content-type', 'application/json');
+
+        return $return;
+
+});
+
 
 
 

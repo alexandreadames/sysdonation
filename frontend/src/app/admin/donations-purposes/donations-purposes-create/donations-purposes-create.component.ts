@@ -20,7 +20,7 @@ export class DonationsPurposesCreateComponent implements OnInit {
   private dp_slug: string;
   //private slug = new Slug('default'); // this will use 'default' keymap
 
-  private donationsPurposesRoute = GlobalService.baseUrl + "/secure/donations-purposes/create";
+  private donationsPurposesRoute = GlobalService.baseUrl + "/secure/donations-purposes";
 
   constructor(
     private http: HttpClient,
@@ -52,6 +52,7 @@ export class DonationsPurposesCreateComponent implements OnInit {
       ).subscribe(
           res => {
             console.log("RESPONSE=>", res);
+            this.router.navigate(["admin/donations-purposes"]);
           },
           err => {
             console.log("ERROR=>",err.statusText);

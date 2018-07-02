@@ -49,6 +49,9 @@ class SQLUtils {
 
 		$stmt->execute();
 
+		//if return is 0 there is a problem...
+		return $stmt->rowCount();
+
 	}
 
 	public function select($rawQuery, $params = array()):array
