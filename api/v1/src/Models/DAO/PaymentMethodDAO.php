@@ -45,7 +45,13 @@ public function getPaymentMethodByUserId($iduser){
 				":iduser"=>$iduser
 			));
 
-		return $results[0];
+		if ($results){
+			return $results[0];	
+		}
+		else {
+			return $results;
+		}
+		
 
 }
 

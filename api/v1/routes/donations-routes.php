@@ -23,7 +23,15 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
 
     $params = (object) $request->getParams();
 
-    /*
+    //Verify if exist payment method in the user
+    $userid = $params->userid;
+
+    $pmDAO = new PaymentMethodDAO();
+
+    $client_credentials = $pmDAO->getPaymentMethodByUserId($userid);
+
+    if ($client_credentials){
+        /*
     params
     ===================
     cpf:"04983863419"
@@ -56,12 +64,6 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     $donation->setDonationCode($params->donation_code);
     $donation->setDonationTitle($params->donation_title);
 
-    $userid = $params->userid;
-
-    $pmDAO = new PaymentMethodDAO();
-
-    $client_credentials = $pmDAO->getPaymentMethodByUserId($userid);
-
     $mpu = new MercadoPagoUtils();
 
     $linkMpOrder = $mpu->generateLinkOrder($client_credentials['client_id'], $client_credentials['client_secret'], $donation);
@@ -78,6 +80,21 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     
     $return = $response->withJson($result, 201)
         ->withHeader('Content-type', 'application/json');
+
+    }
+
+    else {
+
+        $result = Utils::prepareResponse(true, "Para realizar doações é necessário que o dono configure o método de recebimento", array(
+            'data' => 0
+        ));
+
+        $return = $response->withJson($result, 202)
+        ->withHeader('Content-type', 'application/json');
+    }
+
+    
+
     return $return;
 
     

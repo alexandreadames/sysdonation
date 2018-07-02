@@ -86,6 +86,7 @@ export class DonationpurposepageComponent implements OnInit {
             }
             else{
               console.log(res.msg);
+              alert(res.msg);
             }
           },
           err => {
