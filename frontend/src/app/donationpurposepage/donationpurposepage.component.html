@@ -147,20 +147,66 @@
                           <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Seu CPF..." ngModel>
                       </div>
 
+                      <div class="form-group">
+                        <label for="zip_code">CEP</label>
+                        <input [(ngModel)]="donation.zip_code" (blur)="loadAddressByCep()" type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Ex. 59555-089" ngModel>
+                      </div>
+
                       <div class="row form-group">
-                          <div class="col-xs-5">
+                          <div class="col-xs-9">
                             <label for="street_name">Logradouro</label>
-                            <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Rua" ngModel>
+                            <input 
+                            [(ngModel)]="donation.street_name" 
+                            type="text" 
+                            class="form-control" 
+                            id="street_name" 
+                            name="street_name" 
+                            ngModel>
                           </div>
                           <div class="col-xs-3">
                               <label for="street_number">Nº</label>
-                              <input type="number" class="form-control" id="street_number" name="street_number" ngModel>
-                          </div>
-                          <div class="col-xs-4">
-                              <label for="zip_code">CEP</label>
-                              <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Ex. 59555-089" ngModel>
+                              <input
+                              [(ngModel)]="donation.street_number" 
+                              type="number" 
+                              class="form-control" 
+                              id="street_number" 
+                              name="street_number" 
+                              ngModel>
                           </div>
                       </div>
+
+                      <div class="row form-group">
+                          <div class="col-xs-5">
+                              <label for="district">Bairro</label>
+                              <input 
+                              [(ngModel)]="donation.district" 
+                              type="text" class="form-control" 
+                              id="district" 
+                              name="district" 
+                              ngModel>
+                          </div>
+                        <div class="col-xs-5">
+                          <label for="city">Cidade</label>
+                          <input 
+                          [(ngModel)]="donation.city" 
+                          type="text" 
+                          class="form-control" 
+                          id="city" 
+                          name="city" 
+                          ngModel>
+                        </div>
+                        <div class="col-xs-2">
+                            <label for="state">UF</label>
+                            <input
+                            [(ngModel)]="donation.state" 
+                            type="text" 
+                            class="form-control" 
+                            id="state" 
+                            name="state" 
+                            ngModel>
+                        </div>
+                    </div>
+      
         
                     </div>
                     <!-- /.box-body -->

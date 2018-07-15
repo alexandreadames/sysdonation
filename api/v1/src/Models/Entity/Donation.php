@@ -85,6 +85,25 @@ class Donation {
      * @var string
      * @Column(type="string") 
      */
+    protected $donorDistrict;
+
+    /**
+     * @var string
+     * @Column(type="string") 
+     */
+    protected $donorCity;
+
+    /**
+     * @var string
+     * @Column(type="string") 
+     */
+    protected $donorState;
+
+
+    /**
+     * @var string
+     * @Column(type="string") 
+     */
     protected $donorZipCode;
 
     /**
@@ -162,6 +181,18 @@ class Donation {
         return $this->donorStreetNumber;
     }
 
+    public function getDonorDistrict(){
+        return $this->donorDistrict;
+    }
+
+    public function getDonorCity(){
+        return $this->donorCity;
+    }
+
+    public function getDonorState(){
+        return $this->donorState;
+    }
+
     public function getDonorZipCode(){
         return $this->donorZipCode;
     }
@@ -230,6 +261,18 @@ class Donation {
 
     public function setDonorStreetNumber($donorStreetNumber){
         $this->donorStreetNumber = $donorStreetNumber;
+    }
+
+    public function setDonorDistrict($donorDistrict){
+        $this->donorDistrict = $donorDistrict;
+    }
+
+    public function setDonorCity($donorCity){
+        $this->donorCity = $donorCity;
+    }
+
+    public function setDonorState($donorState){
+        $this->donorState = $donorState;
     }
 
     public function setDonorZipCode($donorZipCode){

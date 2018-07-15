@@ -59,6 +59,9 @@ $app->post('/donation', function (Request $request, Response $response) use ($ap
     $donation->setDonorCPF($params->cpf);
     $donation->setDonorStreetName($params->street_name);
     $donation->setDonorStreetNumber($params->street_number);
+    $donation->setDonorDistrict($params->district);
+    $donation->setDonorCity($params->city);
+    $donation->setDonorState($params->state); 
     $donation->setDonorZipCode($params->zip_code);
     $donation->setDonationValue($params->donation_value);
     $donation->setDonationCode($params->donation_code);

@@ -6,6 +6,7 @@ import { DonationPurposePageRes } from './../models/donationpurposepage';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { DonationRes } from '../models/DonationRes';
+import { ViaCepRes } from '../models/viacepres';
 
 @Component({
   selector: 'app-donationpurposepage',
@@ -18,17 +19,39 @@ export class DonationpurposepageComponent implements OnInit {
   username: string;
   donationPurposePageSlug: string;
   private donationsPurposesRoute = GlobalService.baseUrl + "/donations-purposes";
-  private donationRoute = GlobalService.baseUrl + "/donation";
+  private donationRoute = GlobalService.baseUrl + "/donation";  
   donationPurposePageData: DonationPurposePageRes;
   donation: Donation;
-
+  
   public loading = false;
 
 
   constructor(
     private route:ActivatedRoute,
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router) { 
+
+      this.donation = {
+        name : '',
+        surname : '',
+        email : '',
+        phone_area_code: '',
+        phone_number: '',
+        cpf: '',
+        street_name: '',
+        street_number: 0,
+        district: '',
+        city: '',
+        state: '',
+        zip_code: '',
+        donation_value: 0,
+        donation_code: '',
+        donation_title: '',
+        userid: 0,
+        donationpurpose_id: 0
+
+      }
+    }
 
   ngOnInit() {
 
@@ -71,10 +94,10 @@ export class DonationpurposepageComponent implements OnInit {
       this.donation.userid = this.donationPurposePageData.data.owner.iduser;
       console.log("DATA FOR SEND=>", this.donation);
 
-      let donation: Donation = this.donation;
+      //let donation: Donation = this.donation;
       this.loading = true;
       const req = this.http.post<DonationRes>(this.donationRoute, 
-        donation
+        this.donation
       )
         .subscribe(
           res => {
@@ -101,6 +124,24 @@ export class DonationpurposepageComponent implements OnInit {
         );
 
     }
+  }
+
+  //Use viacep webservices for this purpose...
+  loadAddressByCep(){
+    let viaCepWsUrl =  `https://viacep.com.br/ws/${this.donation.zip_code}/json/`; 
+    
+    this.http.get<ViaCepRes>(viaCepWsUrl).subscribe(
+      res => {
+      console.log("RESULT=>", res);
+      this.donation.street_name = res.logradouro;
+      this.donation.district = res.bairro;
+      this.donation.city = res.localidade;
+      this.donation.state = res.uf;
+    },
+        err => {
+          console.log("ERROR=>",err);
+        }
+  );
   }
 
 }

@@ -1,4 +1,4 @@
-export class Donation {
+export interface Donation {
       name : string;
       surname : string;
       email : string;
@@ -7,7 +7,10 @@ export class Donation {
       cpf: string;
       street_name: string;
       street_number: number;
-      zip_code: string;
+      district: string;
+      city: string;
+      state: string;
+      zip_code?: string;
       donation_value: number;
       donation_code: string;
       donation_title: string;

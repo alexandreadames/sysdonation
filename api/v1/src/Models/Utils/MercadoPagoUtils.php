@@ -43,7 +43,7 @@ Class MercadoPagoUtils {
 	            "street_number" => $donation->getDonorStreetNumber(),
 	            "zip_code" => $donation->getDonorZipCode()
 	        )
-	    )/*,
+	    ),/*
 	    "back_urls" => array(
 	        "success" => "https://www.success.com",
 	        "failure" => "http://www.failure.com",
