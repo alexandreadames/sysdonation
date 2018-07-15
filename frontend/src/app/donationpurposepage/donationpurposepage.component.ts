@@ -22,6 +22,8 @@ export class DonationpurposepageComponent implements OnInit {
   donationPurposePageData: DonationPurposePageRes;
   donation: Donation;
 
+  public loading = false;
+
 
   constructor(
     private route:ActivatedRoute,
@@ -70,7 +72,7 @@ export class DonationpurposepageComponent implements OnInit {
       console.log("DATA FOR SEND=>", this.donation);
 
       let donation: Donation = this.donation;
-
+      this.loading = true;
       const req = this.http.post<DonationRes>(this.donationRoute, 
         donation
       )
@@ -81,16 +83,20 @@ export class DonationpurposepageComponent implements OnInit {
               if (res.data.donation.mp_link_order){
                 //Redirect to pagseguro
                 window.location.href= res.data.donation.mp_link_order;
+                this.loading = false;
               }
               
             }
             else{
               console.log(res.msg);
               alert(res.msg);
+              this.loading = false;
             }
+            
           },
           err => {
             console.log("ERROR=>",err.statusText);
+            this.loading = false;
           }
         );
 

@@ -1,3 +1,4 @@
+import { PaymentMethod } from './../../../models/paymentmethod';
 import { UtilService} from './../../../services/util.service';
 import { LoginService } from './../../../services/login.service';
 import { GlobalService } from './../../../services/global.service';
@@ -16,9 +17,9 @@ import { Router } from '@angular/router';
 
 export class DonationsPurposesCreateComponent implements OnInit {
 
-  private dp_title: string;
-  private dp_slug: string;
-  //private slug = new Slug('default'); // this will use 'default' keymap
+  dp_title: string;
+  dp_slug: string;
+  dp_html_content: string;
 
   private donationsPurposesRoute = GlobalService.baseUrl + "/secure/donations-purposes";
 
@@ -29,6 +30,7 @@ export class DonationsPurposesCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
 
   createDonationPurpose(f: NgForm){    

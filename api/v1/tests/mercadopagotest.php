@@ -52,19 +52,20 @@ $preference_data = array(
     ),
     "auto_return" => "approved",
     "payment_methods" => array(
-        "excluded_payment_methods" => array(
-            array(
-                "id" => "amex",
-            )
-        ),
-        "excluded_payment_types" => array(
-            array(
-                "id" => "ticket"
-            )
-        ),
-        "installments" => 24,
-        "default_payment_method_id" => null,
-        "default_installments" => null,
+            "excluded_payment_methods" => array(
+                array(
+                    "id" => "amex",
+                    "id" => "pec"
+                )
+            ),
+            "excluded_payment_types" => array(
+                array(
+                    "id" => "credit_card"
+                )
+            ),
+            "installments" => 24,
+            "default_payment_method_id" => "bolbradesco",
+            "default_installments" => null,
     ),
     "shipments" => array(
         "receiver_address" => array(

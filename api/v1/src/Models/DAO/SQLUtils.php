@@ -4,10 +4,18 @@ namespace App\Models\DAO;
 
 class SQLUtils {
 
-	const HOSTNAME = "127.0.0.1";
-	const USERNAME = "root";
-	const PASSWORD = "";
-	const DBNAME = "db_sysdonation";
+	//Dev Enviroment
+		const HOSTNAME = "127.0.0.1";
+		const USERNAME = "root";
+		const PASSWORD = "";
+		const DBNAME = "db_sysdonation";
+	
+	//Production in SiteGround
+		//const HOSTNAME = "localhost";
+		/*const HOSTNAME = "146.66.103.172";
+		const USERNAME = "alex5278_sysdon";
+		const PASSWORD = "*RSNVH-l@TzF";
+		const DBNAME = "alex5278_sysdonation";*/
 
 	private $conn;
 

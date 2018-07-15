@@ -1,4 +1,6 @@
 <div class="wrapper hold-transition login-page">
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+
 <div class="login-box">
   <div class="login-logo">
     <a href="/ecommerce/res/admin/index2.html"><b>Sys</b>Donation</a>
@@ -49,7 +51,7 @@
     -->
     <!-- /.social-auth-links -->
 
-    <a routerLink="/forgot-password" routerLinkActive="active">Esqueci minha senha</a><br>
+    <!-- <a href="#" onClick="alert('Hello World!')" routerLinkActive="active">Esqueci minha senha</a><br> -->
     <a routerLink="/register" routerLinkActive="active">Clique Aqui para se registrar</a>
 
   </div>

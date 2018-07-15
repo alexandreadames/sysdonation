@@ -13,8 +13,8 @@ import { Component, OnInit } from '@angular/core';
 export class PaymentMethodComponent implements OnInit {
 
   private paymentMethodRoute = GlobalService.baseUrl + "/secure/payment-method";
-  private pm_client_id: string;
-  private pm_client_secret: string;
+  pm_client_id: string;
+  pm_client_secret: string;
   public static readonly PAYMENT_METHOD_DESC = "Mercado Pago";
 
   constructor(

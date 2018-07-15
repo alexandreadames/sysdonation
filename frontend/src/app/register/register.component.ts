@@ -1,3 +1,4 @@
+import { LoginService } from './../services/login.service';
 import { GlobalService } from './../services/global.service';
 import { Httpres } from './../models/httpres';
 import { NgForm } from '@angular/forms';
@@ -13,10 +14,14 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   private res: Httpres;
+  public loading = false;
 
   private registerRoute = GlobalService.baseUrl + "/user/register";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private loginService: LoginService) {}
 
   ngOnInit() {
   }
@@ -34,6 +39,7 @@ export class RegisterComponent implements OnInit {
     }
     
     if (f.valid){
+     this.loading = true;
      const req = this.http.post<Httpres>(this.registerRoute, {
         name: f.value.name,
         email: f.value.email,
@@ -47,14 +53,21 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         res => {
           
-          console.log(res);
-
           if (!res.error){
+            console.log("DATA=>", res.data);
+            this.loginService.setUserToken(res.data.token);
             this.router.navigate(["/admin"]);
           }
+          else{
+            alert("Ocorreu um erro ao tentar ao realizar o registro");
+            console.log(res.msg);
+          }
+          this.loading = false;
         },
         err => {
+          alert("Ocorreu um erro ao tentar ao realizar o registro");
           console.log("Error occured");
+          this.loading = false;
         }
       );
     }

@@ -77,19 +77,16 @@ public function register($user){
 		));
 
 		$data = $results[0];
-		
-		//Retirar dados que não precisam ir para o front
-		unset(
-			$data["id"], 
-			$data["password"], 
-			$data["tbl_persons_id"] 
+
+		$custom_payload = array(
+			"userId" => $data["id"]
 		);
 
 		$response["error"] = false;
 		
 		$response["msg"] = "Registro de Usuário efetivado com sucesso";
-			
-		$jwt = JWT::encode($data, Globals::SECRET_KEY);
+
+		$jwt = TokenUtils::generateToken($custom_payload);
 			
 		$response["data"]["token"]= $jwt;
 			

@@ -20,7 +20,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   body: HTMLBodyElement = document.getElementsByTagName('body')[0];
 
   private res: Httpres;
-  private user: UserProfile;
+  user: UserProfile;
 
   private userPersonalDataProfileRoute = GlobalService.baseUrl + "/secure/user-personaldata-profile";
 

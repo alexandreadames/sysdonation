@@ -50,6 +50,7 @@
     "morris.js": "^0.5.0",
     "ng2-slugify": "^0.1.0",
     "ngx-ckeditor": "^0.3.2",
+    "ngx-loading": "^1.0.14",
     "npm": "^5.10.0",
     "raphael": "^2.2.7",
     "rxjs": "^6.2.1",

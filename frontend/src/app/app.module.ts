@@ -33,6 +33,9 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { DonationpurposepageComponent } from './donationpurposepage/donationpurposepage.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 
+import { LoadingModule } from 'ngx-loading';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +60,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StorageServiceModule
+    StorageServiceModule,
+    LoadingModule
   ],
   providers: [
     LoginService, 

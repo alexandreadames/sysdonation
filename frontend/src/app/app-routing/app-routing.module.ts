@@ -24,7 +24,7 @@ import { UserpageComponent } from '../userpage/userpage.component';
       { path: 'page/:username/:donation-purpose-slug', component: DonationpurposepageComponent },
       //{ path: '404', component: NotfoundComponent },
       //{ path: '**', redirectTo: '404' }
-    ])
+    ], { useHash: true })
   ],
   declarations: [],
   exports: [ RouterModule]

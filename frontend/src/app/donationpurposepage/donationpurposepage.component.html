@@ -1,4 +1,5 @@
 <div class="wrapper hold-transition skin-blue layout-top-nav">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
       <!-- Content Header (Page header) -->
@@ -147,11 +148,11 @@
                       </div>
 
                       <div class="row form-group">
-                          <div class="col-xs-6">
-                            <label for="street_name">Rua</label>
+                          <div class="col-xs-5">
+                            <label for="street_name">Logradouro</label>
                             <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Rua" ngModel>
                           </div>
-                          <div class="col-xs-2">
+                          <div class="col-xs-3">
                               <label for="street_number">Nº</label>
                               <input type="number" class="form-control" id="street_number" name="street_number" ngModel>
                           </div>

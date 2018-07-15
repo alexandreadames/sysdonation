@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDonationsComponent implements OnInit {
 
-  private mydonations;
+  mydonations;
   private donationsRoute = GlobalService.baseUrl + "/secure/donations"; 
   constructor(
     private http: HttpClient,

@@ -16,6 +16,7 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
 
   private res: Httpres;
+  public loading = false;
 
   private loginRoute = GlobalService.baseUrl + "/user/login";
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
     console.log(f.valid);  // false
     
     if (f.valid){
+      this.loading = true;
       const req = this.http.post<Httpres>(this.loginRoute, {
       login: f.value.login,
       password: f.value.password
@@ -48,11 +50,12 @@ export class LoginComponent implements OnInit {
             console.log(res.msg);
             this.alertService.error(res.msg);  
           }
+          this.loading = false;
         },
         err => {
           console.log("ERROR=>",err.statusText);
           this.alertService.error("ERROR=>" + err.statusText + "Consulte os Logs");
-
+          this.loading = false;
         }
       );
     }
