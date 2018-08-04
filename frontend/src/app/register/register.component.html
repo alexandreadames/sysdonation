@@ -8,20 +8,68 @@
   <div class="register-box-body">
     <p class="login-box-msg">Faça seu cadastro</p>
   
-    <form #registerForm="ngForm"(ngSubmit)="register(registerForm)" novalidate> 
-      
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Nome Completo" name="name" ngModel>
+    <form #registerForm="ngForm" (ngSubmit)="register(registerForm)"> 
+      <!--Name field-->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':username.errors && registerForm.submitted}">
+        <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Nome Completo" 
+          name="name" 
+          #username="ngModel"
+          [(ngModel)]="user.name"
+          minlength="4"
+          required
+        >
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && username.invalid" class="help-block">
+            <div *ngIf="username.errors.required">O campo nome é obrigatório
+            </div>
+            <div *ngIf="username.errors.minlength">O campo nome deve ter no mínimo 4 letras</div>
+        </div>
+
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email" name="email" ngModel>
+      <!--Email field-->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':useremail.errors && registerForm.submitted}">
+        <input 
+        type="email" 
+        class="form-control" 
+        placeholder="Email" 
+        name="email" 
+        #useremail="ngModel"
+        [(ngModel)]="user.email"
+        [pattern]="emailPattern"
+        required>
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && useremail.invalid" class="help-block">
+          <div *ngIf="useremail.errors.required">O campo email é obrigatório
+          </div>
+          <div *ngIf="useremail.errors.pattern">Esse email parece inválido</div>
+      </div>
+
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Telefone" name="phone" ngModel>
+      <!--Phone field-->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':userphone.errors && registerForm.submitted}">
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Telefone" 
+        name="phone" 
+        #userphone="ngModel"
+        [(ngModel)]="user.phone"
+        pattern="^\(?\d{2,3}\)?[-. ]?\d{4,6}[-. ]?\d{4}$">
+
+          <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && userphone.invalid" class="help-block">
+            <div *ngIf="userphone.errors.pattern">Esse telefone parece inválido</div>
+        </div>
+
         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
       </div>
 
@@ -35,8 +83,26 @@
         <span class="glyphicon glyphicon-globe form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="CPF" name="cpf" ngModel>
+      <!-- CPF -->
+      <div class="form-group has-feedback"  [ngClass]="{'has-error':usercpf.errors && registerForm.submitted}">
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="CPF" 
+        name="cpf"
+        #usercpf="ngModel"
+        [(ngModel)]="user.cpf"
+        pattern="^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$" 
+        required
+        >
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && usercpf.invalid" class="help-block">
+          <div *ngIf="usercpf.errors.required">O campo CPF é obrigatório
+          </div>
+          <div *ngIf="usercpf.errors.pattern">Esse CPF parece inválido</div>
+      </div>
+
         <span class="glyphicon glyphicon-info-sign form-control-feedback"></span>
       </div>
 

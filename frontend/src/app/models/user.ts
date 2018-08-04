@@ -1,10 +1,11 @@
-export class User {
+export interface User {
+    name: string;
+    email: string;
+    phone: string;
     address: string;
+    site?: string;
     cpf: string;
     dtregister: string;
-    email: string;
-    login: string
-    name: string;
-    phone: string;
-    site: string;
+    login: string;
+    senha: string
 }
