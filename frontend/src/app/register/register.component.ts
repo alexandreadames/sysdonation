@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../models/user';
+import { cleanSession } from 'selenium-webdriver/safari';
 
 @Component({
   selector: 'app-register',
@@ -28,8 +29,13 @@ export class RegisterComponent implements OnInit {
     senha: ''
   }
 
-  emailPattern = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$";
-  phonePattern = "[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}$";
+  password;
+  password_retyped;
+  passwords_not_match: boolean = false;
+
+  emailPattern = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+  phonePattern = /^\(?\d{2,3}\)?[-. ]?\d{3,5}[-. ]?\d{4}$/;
+  loginPattern = /^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\d.-]{0,19}$/;
 
 
   private registerRoute = GlobalService.baseUrl + "/user/register";
@@ -69,15 +75,19 @@ export class RegisterComponent implements OnInit {
   register({value, valid}: {value: User, valid: boolean}) {
 
 
-    /*if (f.value.password != f.value.retyped_password){ 
+    if (this.password != this.password_retyped){ 
+      this.passwords_not_match = true;
+      console.log(this.passwords_not_match);
+    }
+    else{
+      this.passwords_not_match = false;
+      console.log(this.passwords_not_match);
+      this.user.senha = this.password;
+    }
 
-      alert("A senha e a confirmação estão diferentes");
-      return;
-
-    }*/
     
-    if (valid){
-     /*this.loading = true;
+    if (valid && !this.passwords_not_match){
+     this.loading = true;
      const req = this.http.post<Httpres>(this.registerRoute, value)
       .subscribe(
         res => {
@@ -98,8 +108,8 @@ export class RegisterComponent implements OnInit {
           console.log("Error occured");
           this.loading = false;
         }
-      );*/
-      console.log("VALID!", this.user);
+      );
+      //console.log("VALID!", this.user);
     }
     else {
       console.log("NOT VALID!");

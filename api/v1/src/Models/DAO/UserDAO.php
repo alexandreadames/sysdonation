@@ -16,7 +16,18 @@ class UserDAO {
 		
 		$sql = new SQLUtils();
 
-		$results = $sql->select("SELECT * FROM tbl_users u 
+		$results = $sql->select("
+			SELECT u.id as userid, 
+				   u.login,
+				   u.password, 
+				   u.tbl_persons_id, 
+				   p.name, 
+				   p.email, 
+				   p.phone, 
+				   p.site, 
+				   p.address, 
+				   p.cpf 
+			FROM tbl_users u 
 		INNER JOIN tbl_persons p ON u.tbl_persons_id = p.id 
 		WHERE u.login = :LOGIN", array(
 			":LOGIN"=>$login
@@ -38,7 +49,7 @@ class UserDAO {
 			$response["msg"] = "Login efetuado";
 
 			$custom_payload = array(
-				"userId" => $data["id"]
+				"userId" => $data["userid"]
 			);
 
 			$jwt = TokenUtils::generateToken($custom_payload);
@@ -79,7 +90,7 @@ public function register($user){
 		$data = $results[0];
 
 		$custom_payload = array(
-			"userId" => $data["id"]
+			"userId" => $data["userid"]
 		);
 
 		$response["error"] = false;

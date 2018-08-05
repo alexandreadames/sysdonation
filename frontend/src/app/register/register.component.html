@@ -59,11 +59,11 @@
         <input 
         type="text" 
         class="form-control" 
-        placeholder="Telefone" 
+        placeholder="Telefone (Opcional)" 
         name="phone" 
         #userphone="ngModel"
         [(ngModel)]="user.phone"
-        pattern="^\(?\d{2,3}\)?[-. ]?\d{4,6}[-. ]?\d{4}$">
+        [pattern]="phonePattern">
 
           <!--Help block erros-->
         <div *ngIf="registerForm.submitted && userphone.invalid" class="help-block">
@@ -73,8 +73,24 @@
         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Endereço" name="address" ngModel>
+      <!-- Address -->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':useraddress.errors && registerForm.submitted}">
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Endereço" 
+        name="address" 
+        #useraddress="ngModel"
+        [(ngModel)]="user.address"
+        required
+        >
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && useraddress.invalid" class="help-block">
+          <div *ngIf="useraddress.errors.required">O campo endereço é obrigatório
+          </div>
+      </div>
+
         <span class="glyphicon glyphicon-home form-control-feedback"></span>
       </div>
 
@@ -84,7 +100,7 @@
       </div>
 
       <!-- CPF -->
-      <div class="form-group has-feedback"  [ngClass]="{'has-error':usercpf.errors && registerForm.submitted}">
+      <div class="form-group has-feedback" [ngClass]="{'has-error':usercpf.errors && registerForm.submitted}">
         <input 
         type="text" 
         class="form-control" 
@@ -108,18 +124,79 @@
 
       <hr>
 
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Login" name="login" ngModel>
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      <!-- Login -->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':userlogin.errors && registerForm.submitted}">
+        <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Login" 
+        name="login" 
+        #userlogin="ngModel"
+        [(ngModel)]="user.login"
+        [pattern]="loginPattern" 
+        required>
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && userlogin.invalid" class="help-block">
+          <div *ngIf="userlogin.errors.required">O campo login é obrigatório
+          </div>
+          <div *ngIf="userlogin.errors.pattern">Esse login parece inválido</div>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Senha" name="password" ngModel>
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      
+      <!-- Password -->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':(userpassword.errors || passwords_not_match) && registerForm.submitted}">
+        <input 
+        type="password" 
+        class="form-control" 
+        placeholder="Senha" 
+        name="password"
+        #userpassword="ngModel"
+        [(ngModel)]="password"
+        minlength="6"
+        required 
+        >
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && userpassword.invalid" class="help-block">
+          <div *ngIf="userpassword.errors.required">O campo senha é obrigatório
+          </div>
+          <div *ngIf="userpassword.errors.minlength">O campo senha deve ter no mínimo 6 caracteres</div>
+        </div>
+
+        <div *ngIf="registerForm.submitted && passwords_not_match" class="help-block">
+          <div>A senha e a confirmação de senha são diferentes</div>
+        </div>
+
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Confirme a senha" name="retyped_password" ngModel>
+      <!-- Password Retyped-->
+      <div class="form-group has-feedback" [ngClass]="{'has-error':(passwordretyped.errors  || passwords_not_match) && registerForm.submitted}">
+        <input 
+        type="password" 
+        class="form-control" 
+        placeholder="Confirme a senha" 
+        name="retyped_password"
+        #passwordretyped="ngModel"
+        [(ngModel)]="password_retyped" 
+        minlength="6"
+        required 
+        >
+
+        <!--Help block erros-->
+        <div *ngIf="registerForm.submitted && passwordretyped.invalid" class="help-block">
+          <div *ngIf="passwordretyped.errors.required">A confirmação da senha é obrigatório
+          </div>
+          <div *ngIf="passwordretyped.errors.minlength">A confirmação da senha deve ter no mínimo 6 caracteres</div>
+        </div>
+
+        <div *ngIf="registerForm.submitted && passwords_not_match" class="help-block">
+          <div>A senha e a confirmação de senha são diferentes</div>
+        </div>
+
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
